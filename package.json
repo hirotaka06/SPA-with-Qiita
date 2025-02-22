@@ -8,11 +8,14 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "lint": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "--- TEST SECTION ---": "--- --- --- --- ---",
+    "test": "vitest"
   },
   "dependencies": {
     "@react-router/node": "^7.2.0",
     "@react-router/serve": "^7.2.0",
+    "autoprefixer": "^10.4.20",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -38,6 +41,7 @@
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^5.4.11",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.6"
   }
 }
