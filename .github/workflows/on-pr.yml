@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn ci:check
+      - run: yarn ci:build
+        env:
+          PORT: ${{ secrets.PORT }}
+      - run: yarn ci:test

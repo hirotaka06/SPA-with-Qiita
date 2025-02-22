@@ -18,9 +18,16 @@ export default [
       },
     },
     rules: {
-      'no-unused-vars': 'warn',
-      'no-undef': 'warn',
+      'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
+      'no-empty-pattern': 'off',
+      '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+    },
+  },
+  {
+    rules: {
+      'no-console': 'warn',
     },
   },
   eslintConfigPrettier,
