@@ -1,5 +1,8 @@
 import type { Route } from './+types/ArticleHome';
 import type { ArticleType } from '~/types/article';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { Link } from 'react-router';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,35 +11,38 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-function fetchArticles(): Promise<ArticleType[]> {
-  // qiitaのAPIを使用して記事一覧の情報を取得
-  return fetch('https://qiita.com/api/v2/items')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      return data as ArticleType[];
-    })
-    .catch((error) => {
-      throw error;
-    });
+export async function fetchArticles(): Promise<ArticleType[]> {
+  const response = await axios.get('https://qiita.com/api/v2/items', {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_QIITA_API_TOKEN}`,
+    },
+  });
+  return response.data;
 }
 
-export async function loader({}: Route.LoaderArgs) {
+export async function clientLoader({}: Route.LoaderArgs) {
   const articles = await fetchArticles();
   return articles;
 }
 
 export default function Component({ loaderData }: Route.ComponentProps) {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['articles'],
+    queryFn: fetchArticles,
+    initialData: loaderData,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-3xl">
-        {loaderData.map((article: ArticleType, index: number) => (
+        {data.map((article: ArticleType, index: number) => (
           <div key={index}>
-            <h2>{article.title}</h2>
+            <Link to={`/${article.id}`}>
+              <h2>{article.title}</h2>
+            </Link>
           </div>
         ))}
       </div>
