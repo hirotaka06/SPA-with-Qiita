@@ -10,6 +10,7 @@ export default defineConfig(async (configEnv: ConfigEnv) => {
     defineConfig({
       test: {
         globals: true,
+        environment: 'jsdom',
       },
     }),
   );

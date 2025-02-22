@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
         plugins: [tailwindcss, autoprefixer],
       },
     },
-    plugins: [reactRouter(), tsconfigPaths()],
+    plugins: [!process.env.VITEST && reactRouter(), tsconfigPaths()],
     server: {
       port: Number.parseInt(env.PORT || '5173'),
     },
