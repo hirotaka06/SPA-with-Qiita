@@ -14,7 +14,9 @@
     "--- CI SECTION ---": "--- --- --- --- ---",
     "ci:check": "yarn eslint . && yarn prettier --check .",
     "ci:build": "yarn build",
-    "ci:test": "yarn test"
+    "ci:test": "yarn test",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -34,8 +36,16 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.21.0",
     "@react-router/dev": "^7.2.0",
+    "@storybook/addon-essentials": "^8.5.8",
+    "@storybook/addon-interactions": "^8.5.8",
+    "@storybook/addon-onboarding": "^8.5.8",
+    "@storybook/blocks": "^8.5.8",
+    "@storybook/react": "^8.5.8",
+    "@storybook/react-vite": "^8.5.8",
+    "@storybook/test": "^8.5.8",
     "@tailwindcss/vite": "^4.0.8",
     "@types/node": "^20",
     "@types/react": "^19.0.1",
@@ -48,14 +58,22 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-storybook": "^0.11.3",
     "globals": "^16.0.0",
     "prettier": "^3.5.2",
     "react-router-devtools": "^1.1.0",
+    "storybook": "^8.5.8",
     "tailwindcss": "^4.0.8",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^5.4.11",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.6"
+  },
+  "packageManager": "yarn@4.6.0",
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
