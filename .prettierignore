@@ -1,0 +1,6 @@
+# 既存の無視するパス
+node_modules
+dist
+
+# app/components/uiディレクトリを無視
+app/components/ui
