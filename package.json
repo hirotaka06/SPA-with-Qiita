@@ -10,7 +10,11 @@
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "--- TEST SECTION ---": "--- --- --- --- ---",
-    "test": "vitest"
+    "test": "vitest",
+    "--- CI SECTION ---": "--- --- --- --- ---",
+    "ci:check": "yarn eslint . && yarn prettier --check .",
+    "ci:build": "yarn env-cmd -f .env.example yarn build",
+    "ci:test": "yarn test"
   },
   "dependencies": {
     "@react-router/node": "^7.2.0",
