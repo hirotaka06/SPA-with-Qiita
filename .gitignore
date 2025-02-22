@@ -10,3 +10,5 @@
 .env
 .env.local
 .env*
+
+*storybook.log
