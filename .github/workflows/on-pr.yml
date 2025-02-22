@@ -16,4 +16,6 @@ jobs:
 
       - run: yarn ci:check
       - run: yarn ci:build
+        env:
+          PORT: ${{ secrets.PORT }}
       - run: yarn ci:test

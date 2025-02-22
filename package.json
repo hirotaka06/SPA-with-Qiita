@@ -13,7 +13,7 @@
     "test": "vitest",
     "--- CI SECTION ---": "--- --- --- --- ---",
     "ci:check": "yarn eslint . && yarn prettier --check .",
-    "ci:build": "yarn env-cmd -f .env.example yarn build",
+    "ci:build": "yarn build",
     "ci:test": "yarn test"
   },
   "dependencies": {
