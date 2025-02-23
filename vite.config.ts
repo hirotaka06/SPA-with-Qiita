@@ -19,5 +19,10 @@ export default defineConfig(({ mode }) => {
     server: {
       port: Number.parseInt(env.PORT || '5173'),
     },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: ['./vitest-setup.ts'],
+    },
   };
 });
