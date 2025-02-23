@@ -1,5 +1,6 @@
 import type { Route } from './+types/Article';
-import type { ArticleType } from '~/types/article';
+import { Link } from 'react-router';
+import { useFetchArticle } from '~/hooks/useFetchArticle';
 
 export function meta({ params }: Route.MetaArgs) {
   const { articleId } = params;
@@ -9,34 +10,18 @@ export function meta({ params }: Route.MetaArgs) {
   ];
 }
 
-function fetchArticle(articleId: string): Promise<ArticleType> {
-  // qiitaのAPIを使用して記事の情報を取得
-  return fetch(`https://qiita.com/api/v2/items/${articleId}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      throw error;
-    });
-}
+export default function Article({ params }: Route.ComponentProps) {
+  const { data, error, isLoading } = useFetchArticle(params.articleId);
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const article = await fetchArticle(params.articleId);
-  return article;
-}
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-export default function Component({ loaderData }: Route.ComponentProps) {
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-3xl">
-        <h1 className="text-2xl font-bold">{loaderData.title}</h1>
+        <h1 className="text-2xl font-bold">{data?.title}</h1>
       </div>
+      <Link to="/">戻る</Link>
     </div>
   );
 }
