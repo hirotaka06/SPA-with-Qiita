@@ -18,6 +18,28 @@ export const handlers = [
 ];
 
 const mockData = [
-  { id: '1', title: 'Article 1' },
-  { id: '2', title: 'Article 2' },
+  {
+    id: '1',
+    title: 'Article 1',
+    created_at: '2023-01-01T00:00:00Z',
+    likes_count: 10,
+    tags: [{ name: 'JavaScript' }, { name: 'React' }],
+    user: {
+      id: 'user1',
+      name: 'User One',
+      profile_image_url: 'https://example.com/user1.jpg',
+    },
+  },
+  {
+    id: '2',
+    title: 'Article 2',
+    created_at: '2023-02-01T00:00:00Z',
+    likes_count: 20,
+    tags: [{ name: 'TypeScript' }, { name: 'Node.js' }],
+    user: {
+      id: 'user2',
+      name: 'User Two',
+      profile_image_url: 'https://example.com/user2.jpg',
+    },
+  },
 ];
