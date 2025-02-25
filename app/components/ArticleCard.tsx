@@ -16,9 +16,9 @@ export default function ArticleCard({
         {/* Top neon line */}
         <div className="absolute h-px opacity-0 group-hover:opacity-100 transition-all duration-800 ease-in-out inset-x-0 -top-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-rose-500 to-transparent" />
         {/* Bottom neon line */}
-        <div className="absolute h-px opacity-100 group-hover:opacity-0 transition-all duration-800 ease-in-out inset-x-0 -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-green-500 to-transparent" />
+        <div className="absolute h-px opacity-100 group-hover:opacity-0 transition-all duration-800 ease-in-out inset-x-0 -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-purple-500 to-transparent" />
 
-        <Card className="w-full bg-black/10 text-white p-6 relative overflow-hidden border border-gray-500/20 transition-colors duration-200 hover:border-pink-500/20 hover:bg-dots">
+        <Card className="w-full bg-black/90 text-white p-6 relative overflow-hidden border border-gray-500/10 transition-colors duration-200 hover:border-pink-500/20 hover:bg-dots">
           <div className="space-y-4">
             {/* Date */}
             <div className="text-sm text-green-200/80 group-hover:text-yellow-300">
@@ -26,7 +26,7 @@ export default function ArticleCard({
             </div>
 
             {/* Title */}
-            <h2 className="text-xl font-medium leading-tight text-white transition-transform duration-200 transform group-hover:scale-103 line-clamp-2 h-12">
+            <h2 className="text-xl font-medium leading-tight text-white transition-transform duration-200 transform group-hover:scale-102 line-clamp-2 h-12">
               {title}
             </h2>
 

@@ -2,16 +2,12 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
 } from 'react-router';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Header from './components/Header';
 import type { Route } from './+types/root';
 import './app.css';
-
-const queryClient = new QueryClient();
+import ArticleLayout from './routes/ArticleLayout';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -36,25 +32,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <QueryClientProvider client={queryClient}>
-          {children}
-          <ScrollRestoration />
-          <Scripts />
-        </QueryClientProvider>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
 }
 
 export default function App() {
-  return (
-    <>
-      <Header />
-      <div className="pt-16">
-        <Outlet />
-      </div>
-    </>
-  );
+  return <ArticleLayout />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
