@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import ArticleHome from '~/routes/ArticleHome';
 import userEvent from '@testing-library/user-event';
+import ArticleLayout from '~/routes/ArticleLayout';
 
 const createWrapper = () => {
   const queryClient = new QueryClient({
@@ -35,6 +36,7 @@ test('初回レンダリング時にAPIトークンを入力してください�
 
 test('APIトークンが確認された後に記事が表示される', async () => {
   render(<ArticleHome />, { wrapper: createWrapper() });
+  render(<ArticleLayout />, { wrapper: createWrapper() });
 
   // APIトークンを入力して確定ボタンをクリック
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
@@ -49,6 +51,7 @@ test('APIトークンが確認された後に記事が表示される', async ()
 
 test('無効なAPIトークンが入力された場合、エラーメッセージが表示される', async () => {
   render(<ArticleHome />, { wrapper: createWrapper() });
+  render(<ArticleLayout />, { wrapper: createWrapper() });
 
   // 無効なAPIトークンを入力して確定ボタンをクリック
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
