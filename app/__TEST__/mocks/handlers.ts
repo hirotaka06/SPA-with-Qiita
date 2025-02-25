@@ -2,7 +2,11 @@ import { http, HttpResponse } from 'msw';
 
 export const handlers = [
   // 全てのアイテムを返すハンドラー
-  http.get('https://qiita.com/api/v2/items', () => {
+  http.get('https://qiita.com/api/v2/items', ({ request }) => {
+    const token = request.headers.get('Authorization');
+    if (token !== 'Bearer ' + 'valid-token') {
+      return HttpResponse.json({ error: 'Invalid API token' }, { status: 401 });
+    }
     return HttpResponse.json(mockData);
   }),
   // 特定のIDのアイテムを返すハンドラー
