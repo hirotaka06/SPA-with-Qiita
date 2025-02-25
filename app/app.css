@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: hsl(0 0% 100%);
+  --background: hsl(0, 0%, 0%);
   --foreground: hsl(0 0% 3.9%);
   --card: hsl(0 0% 100%);
   --card-foreground: hsl(0 0% 3.9%);
@@ -97,4 +97,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.hover\:bg-dots:hover {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 242, 0, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 10px 10px;
+  background-color: #23232340;
 }
