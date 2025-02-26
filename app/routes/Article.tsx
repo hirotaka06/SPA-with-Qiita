@@ -17,7 +17,7 @@ export default function Article({ params }: Route.ComponentProps) {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center text-white">
       <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-3xl">
         <h1 className="text-2xl font-bold">{data?.title}</h1>
       </div>
