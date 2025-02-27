@@ -51,6 +51,7 @@ export default function ApiForm() {
         <Button
           type="submit"
           className="mt-2 shadow-sm text-black border bg-white hover:bg-gray-200"
+          aria-label="トークンを確認"
         >
           <Check />
         </Button>

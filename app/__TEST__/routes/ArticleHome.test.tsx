@@ -35,31 +35,47 @@ test('初回レンダリング時にAPIトークンを入力してください�
 });
 
 test('APIトークンが確認された後に記事が表示される', async () => {
-  render(<ArticleHome />, { wrapper: createWrapper() });
-  render(<ArticleLayout />, { wrapper: createWrapper() });
+  render(
+    <div>
+      <ArticleHome />
+      <ArticleLayout />
+    </div>,
+    { wrapper: createWrapper() },
+  );
 
-  // APIトークンを入力して確定ボタンをクリック
+  const settingsButton = screen.getByRole('button', {
+    name: 'APIトークンを入力',
+  });
+  await userEvent.click(settingsButton);
+
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
   await userEvent.type(tokenInput, 'valid-token');
-  const confirmButton = screen.getByRole('button', { name: '確定' });
+  const confirmButton = screen.getByRole('button', { name: 'トークンを確認' });
   await userEvent.click(confirmButton);
 
-  // 記事が表示されることを確認
   const articleElement2 = await screen.findByText('Article 1');
   expect(articleElement2).toBeInTheDocument();
 });
 
 test('無効なAPIトークンが入力された場合、エラーメッセージが表示される', async () => {
-  render(<ArticleHome />, { wrapper: createWrapper() });
-  render(<ArticleLayout />, { wrapper: createWrapper() });
+  render(
+    <div>
+      <ArticleHome />
+      <ArticleLayout />
+    </div>,
+    { wrapper: createWrapper() },
+  );
 
-  // 無効なAPIトークンを入力して確定ボタンをクリック
+  const settingsButton = screen.getByRole('button', {
+    name: 'APIトークンを入力',
+  });
+  await userEvent.click(settingsButton);
+
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
   await userEvent.type(tokenInput, 'invalid-token');
-  const confirmButton = screen.getByRole('button', { name: '確定' });
+  const confirmButton = screen.getByRole('button', { name: 'トークンを確認' });
   await userEvent.click(confirmButton);
 
-  // エラーメッセージが表示されることを確認
   const errorMessage = await screen.findByText(
     'Error: 無効なAPIトークンです。',
   );
