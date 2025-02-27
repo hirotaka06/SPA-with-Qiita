@@ -4,6 +4,7 @@ import { apiTokenAtom } from '~/atoms/articleAtoms';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { Check } from 'lucide-react';
+
 interface FormData {
   token: string;
 }
@@ -17,17 +18,20 @@ export default function ApiForm() {
 
   const [, setApiToken] = useAtom(apiTokenAtom);
 
-  const onSubmit = (data: FormData) => {
-    setApiToken(data.token);
+  const onSubmit = async (formData: FormData) => {
+    setApiToken(formData.token);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex w-full max-w-3xl border border-gray-700 rounded-md"
-    >
-      <div className="relative flex-1 text-white">
+    <div className="bg-white rounded-xl p-4">
+      <div className="absolute top-[-10px] right-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-white mr-12"></div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col w-full rounded-md "
+      >
+        <label className="text-sm">Qiita APIトークン</label>
         <Input
+          id="api-token"
           type="text"
           {...register('token', {
             required: 'APIトークンは必須です',
@@ -37,18 +41,20 @@ export default function ApiForm() {
             },
           })}
           placeholder="APIトークンを入力..."
-          className="h-12 rounded-l-md rounded-r-none bg-black px-4"
+          className={`mt-1 border bg-black text-white ring-2 ${errors.token ? 'ring-red-700' : 'focus:ring-blue-700'}`}
         />
         {errors.token && (
-          <span className="text-red-700 text-sm">{errors.token.message}</span>
+          <span className="text-red-700 text-sm mt-1">
+            {errors.token.message}
+          </span>
         )}
-      </div>
-      <Button
-        type="submit"
-        className="h-12 w-12 rounded-l-none rounded-r-md bg-white text-black hover:bg-gray-200"
-      >
-        <Check />
-      </Button>
-    </form>
+        <Button
+          type="submit"
+          className="mt-2 shadow-sm text-black border bg-white hover:bg-gray-200"
+        >
+          <Check />
+        </Button>
+      </form>
+    </div>
   );
 }

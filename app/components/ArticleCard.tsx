@@ -18,7 +18,7 @@ export default function ArticleCard({
         {/* Bottom neon line */}
         <div className="absolute h-px opacity-100 group-hover:opacity-0 transition-all duration-800 ease-in-out inset-x-0 -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-purple-500 to-transparent" />
 
-        <Card className="w-full bg-black/90 text-white p-6 relative overflow-hidden border border-gray-500/30 transition-colors duration-200 hover:border-pink-500/20 hover:bg-dots">
+        <Card className="w-full bg-black/90 text-white p-6 relative overflow-hidden border border-white/10 transition-colors duration-200 hover:border-pink-500/20 hover:bg-dots">
           <div className="space-y-4">
             {/* Date */}
             <div className="text-sm text-green-200/80 group-hover:text-yellow-300">

@@ -7,14 +7,14 @@ const queryClient = new QueryClient();
 export default function ArticleLayout() {
   return (
     <>
-      <header className="m-8">
-        <Header />
-      </header>
-      <main className="pt-16">
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <header className="m-8">
+          <Header />
+        </header>
+        <main className="pt-16">
           <Outlet />
-        </QueryClientProvider>
-      </main>
+        </main>
+      </QueryClientProvider>
     </>
   );
 }

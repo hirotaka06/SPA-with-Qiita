@@ -1,10 +1,9 @@
 import type { Route } from './+types/ArticleHome';
 import type { ArticleType } from '~/types/article';
-import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { useFetchArticles } from '~/hooks/useFetchArticles';
 import { Link } from 'react-router';
-import { keywordAtom, apiTokenAtom } from '~/atoms/articleAtoms';
+import { keywordAtom, apiTokenAtom, pageAtom } from '~/atoms/articleAtoms';
 import ArticleCard from '~/components/ArticleCard';
 import { Loading } from '~/components/Loading';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -19,7 +18,7 @@ export function meta({}: Route.MetaArgs) {
 export default function ArticleHome() {
   const [keyword] = useAtom(keywordAtom);
   const [apiToken] = useAtom(apiTokenAtom);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useAtom(pageAtom);
   const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
 
   const handleNextPage = () => {
@@ -35,20 +34,6 @@ export default function ArticleHome() {
       {isLoading && apiToken && (
         <div className="mt-8">
           <Loading />
-        </div>
-      )}
-      {data && (
-        <div className="my-4 flex justify-between w-[calc(100%-8rem)] px-8 text-black">
-          <button
-            onClick={handlePreviousPage}
-            className="p-2 bg-white rounded"
-            disabled={page === 1}
-          >
-            <ArrowLeft />
-          </button>
-          <button onClick={handleNextPage} className="p-2 bg-white rounded">
-            <ArrowRight />
-          </button>
         </div>
       )}
       <div className="p-6 w-[calc(100%-8rem)] text-white grid grid-cols-1 md:grid-cols-3 gap-4">
