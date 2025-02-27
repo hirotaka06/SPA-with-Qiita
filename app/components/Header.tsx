@@ -29,7 +29,7 @@ export default function Header() {
       <header
         className={`fixed top-4 w-[calc(100%-2rem)] z-50 bg-black rounded-xl ${hasScrolled ? 'shadow-[0_4px_18px_rgba(255,255,255,0.12)] border border-white/10' : ''}`}
       >
-        <div className="flex justify-between px-6 py-4 mx-12">
+        <div className="flex justify-between py-4 space-x-2 mx-3 sm:mx-5 md:mx-8 lg:mx-12">
           {/* ロゴ */}
           <Link to="/">
             <img src="/logo.svg" alt="logo" className="w-20 h-12" />
@@ -40,7 +40,7 @@ export default function Header() {
             {/* APIトークン入力フォーム表示ボタン */}
             <Button
               onClick={toggleApiForm}
-              className="h-12 w-12 rounded-md bg-white text-black hover:bg-gray-200"
+              className="h-12 rounded-md bg-white text-black hover:bg-gray-200"
               aria-label="APIトークンを入力"
             >
               <Settings />
@@ -52,7 +52,7 @@ export default function Header() {
       {isApiFormVisible && (
         <>
           <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
-          <div className="fixed top-32 w-[30%] right-12 z-50 ">
+          <div className="fixed top-32 w-[80%] lg:w-[30%] right-[3%] lg:right-12 z-50 ">
             <ApiForm />
           </div>
         </>

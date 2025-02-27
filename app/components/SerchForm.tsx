@@ -22,7 +22,7 @@ export default function SearchForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-full max-w-3xl border border-gray-800 rounded-md"
+      className="flex w-full max-w-3xl border border-gray-800 rounded-md mx-2"
     >
       <div className="relative flex-1 text-white">
         <Input

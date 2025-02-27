@@ -24,7 +24,6 @@ export default function ApiForm() {
 
   return (
     <div className="bg-white rounded-xl p-4">
-      <div className="absolute top-[-10px] right-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-white mr-12"></div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-full rounded-md "
@@ -50,7 +49,7 @@ export default function ApiForm() {
         )}
         <Button
           type="submit"
-          className="mt-2 shadow-sm text-black border bg-white hover:bg-gray-200"
+          className="px-2 mt-2 shadow-sm text-black border bg-white hover:bg-gray-200"
           aria-label="トークンを確認"
         >
           <Check />
