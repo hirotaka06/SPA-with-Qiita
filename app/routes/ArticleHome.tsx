@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import type { Route } from './+types/ArticleHome';
 import type { ArticleType } from '~/types/article';
-import { Link } from 'react-router';
+import { useAtom } from 'jotai';
 import { useFetchArticles } from '~/hooks/useFetchArticles';
+import { Link } from 'react-router';
+import { keywordAtom, apiTokenAtom, pageAtom } from '~/atoms/articleAtoms';
 import ArticleCard from '~/components/ArticleCard';
 import { Loading } from '~/components/Loading';
-import { useAtom } from 'jotai';
-import { keywordAtom, apiTokenAtom } from '~/atoms/articleAtoms';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -18,7 +18,7 @@ export function meta({}: Route.MetaArgs) {
 export default function ArticleHome() {
   const [keyword] = useAtom(keywordAtom);
   const [apiToken] = useAtom(apiTokenAtom);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useAtom(pageAtom);
   const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
 
   const handleNextPage = () => {
@@ -31,8 +31,12 @@ export default function ArticleHome() {
 
   return (
     <div className="flex flex-col items-center justify-center mt-4">
-      {isLoading && apiToken && <Loading />}
-      <div className="p-6 mx-10 w-full text-white grid grid-cols-1 md:grid-cols-3 gap-2">
+      {isLoading && apiToken && (
+        <div className="mt-8">
+          <Loading />
+        </div>
+      )}
+      <div className="p-6 w-[calc(100%-8rem)] text-white grid grid-cols-1 md:grid-cols-3 gap-4">
         {!apiToken && <div>APIトークンを入力してください</div>}
         {error && apiToken && <div>Error: {error.message}</div>}
         {data &&
@@ -44,21 +48,20 @@ export default function ArticleHome() {
             </div>
           ))}
       </div>
-      <div className="flex mt-4">
-        <button
-          onClick={handlePreviousPage}
-          className="mr-2 p-2 bg-[#03090c] border text-white rounded"
-          disabled={page === 1}
-        >
-          前のページへ
-        </button>
-        <button
-          onClick={handleNextPage}
-          className="p-2 bg-[#03090c] border text-white rounded"
-        >
-          次のページへ
-        </button>
-      </div>
+      {data && (
+        <div className="my-4 flex justify-between w-[calc(100%-8rem)] px-8 text-black">
+          <button
+            onClick={handlePreviousPage}
+            className="p-2 bg-white rounded"
+            disabled={page === 1}
+          >
+            <ArrowLeft />
+          </button>
+          <button onClick={handleNextPage} className="p-2 bg-white rounded">
+            <ArrowRight />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

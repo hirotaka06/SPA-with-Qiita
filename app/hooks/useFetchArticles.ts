@@ -18,7 +18,7 @@ export function useFetchArticles(
           params: {
             fields: 'id,title,created_at,likes_count,tags,user',
             page: page.toString(),
-            per_page: '12',
+            per_page: '30',
             query: keyword ? `tag:${keyword} OR body:${keyword}` : undefined,
           },
         });
