@@ -1,5 +1,7 @@
 import type { Route } from './+types/Article';
 import { Link } from 'react-router';
+import { useAtomValue } from 'jotai';
+import { apiTokenAtom } from '~/atoms/articleAtoms';
 import { useFetchArticle } from '~/hooks/useFetchArticle';
 
 export function meta({ params }: Route.MetaArgs) {
@@ -11,7 +13,11 @@ export function meta({ params }: Route.MetaArgs) {
 }
 
 export default function Article({ params }: Route.ComponentProps) {
-  const { data, error, isLoading } = useFetchArticle(params.articleId);
+  const apiToken = useAtomValue(apiTokenAtom);
+  const { data, error, isLoading } = useFetchArticle(
+    params.articleId,
+    apiToken,
+  );
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
