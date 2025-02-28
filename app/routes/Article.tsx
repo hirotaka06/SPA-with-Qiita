@@ -2,10 +2,10 @@ import type { Route } from './+types/Article';
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import { useFetchArticle } from '~/hooks/useFetchArticle';
-import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useAtomValue } from 'jotai';
 import { apiTokenAtom } from '~/atoms/articleAtoms';
+import ReactMarkdown from 'react-markdown';
 
 export function meta({ params }: Route.MetaArgs) {
   const { articleId } = params;
@@ -22,16 +22,6 @@ export default function Article({ params }: Route.ComponentProps) {
     apiToken,
   );
 
-  useEffect(() => {
-    const articleElement = document.querySelector('.article-content');
-    if (articleElement) {
-      const h1Elements = articleElement.getElementsByTagName('h1');
-      for (const h1 of h1Elements) {
-        h1.classList.add('font-bold', 'text-2xl');
-      }
-    }
-  }, [data?.rendered_body]);
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -43,10 +33,9 @@ export default function Article({ params }: Route.ComponentProps) {
             <ArrowLeft />
           </Button>
         </Link>
-        <div
-          className="article-content mt-2"
-          dangerouslySetInnerHTML={{ __html: data?.rendered_body ?? '' }}
-        />
+        <div className="article-content mt-2">
+          <ReactMarkdown>{data?.body}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );

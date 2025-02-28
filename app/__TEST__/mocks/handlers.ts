@@ -33,6 +33,7 @@ const mockData = [
       name: 'User One',
       profile_image_url: 'https://example.com/user1.jpg',
     },
+    body: 'これはArticle 1',
   },
   {
     id: '2',
@@ -45,5 +46,6 @@ const mockData = [
       name: 'User Two',
       profile_image_url: 'https://example.com/user2.jpg',
     },
+    body: 'これはArticle 2',
   },
 ];

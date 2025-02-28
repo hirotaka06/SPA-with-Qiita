@@ -16,6 +16,6 @@ export function useFetchArticle(articleId: string, apiToken: string) {
       );
       return response.data;
     },
-    enabled: !!articleId && !!apiToken,
+    enabled: !!articleId,
   });
 }
