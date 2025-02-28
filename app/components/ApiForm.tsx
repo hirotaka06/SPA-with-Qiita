@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { apiTokenAtom } from '~/atoms/articleAtoms';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
@@ -16,7 +16,7 @@ export default function ApiForm() {
     formState: { errors },
   } = useForm<FormData>();
 
-  const [, setApiToken] = useAtom(apiTokenAtom);
+  const setApiToken = useSetAtom(apiTokenAtom);
 
   const onSubmit = async (formData: FormData) => {
     setApiToken(formData.token);

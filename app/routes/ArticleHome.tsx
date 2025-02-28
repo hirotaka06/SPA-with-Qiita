@@ -1,6 +1,6 @@
 import type { Route } from './+types/ArticleHome';
 import type { ArticleType } from '~/types/article';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useFetchArticles } from '~/hooks/useFetchArticles';
 import { Link } from 'react-router';
 import { keywordAtom, apiTokenAtom, pageAtom } from '~/atoms/articleAtoms';
@@ -16,8 +16,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function ArticleHome() {
-  const [keyword] = useAtom(keywordAtom);
-  const [apiToken] = useAtom(apiTokenAtom);
+  const keyword = useAtomValue(keywordAtom);
+  const apiToken = useAtomValue(apiTokenAtom);
   const [page, setPage] = useAtom(pageAtom);
   const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
 
