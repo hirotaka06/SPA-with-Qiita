@@ -31,6 +31,9 @@ export default function ArticleHome() {
 
   return (
     <div className="flex flex-col items-center justify-center mt-4">
+      {!apiToken && (
+        <div className="text-white">APIトークンを入力してください</div>
+      )}
       {isLoading && apiToken && (
         <div className="mt-12 flex flex-col items-center justify-center">
           <BarLoader color="#ffffff" width={200} />
@@ -38,7 +41,6 @@ export default function ArticleHome() {
         </div>
       )}
       <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white grid grid-cols-1 md:grid-cols-3 gap-4">
-        {!apiToken && <div>APIトークンを入力してください</div>}
         {error && apiToken && <div>Error: {error.message}</div>}
         {data &&
           data.map((article: ArticleType, index: number) => (

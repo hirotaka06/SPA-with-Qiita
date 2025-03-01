@@ -26,7 +26,9 @@ export default function Article({ params }: Route.ComponentProps) {
 
   return (
     <div className="flex flex-col items-center justify-center mt-4">
-      {!apiToken && <div>APIトークンを入力してください</div>}
+      {!apiToken && (
+        <div className="text-white">APIトークンを入力してください</div>
+      )}
       {isLoading && apiToken && (
         <div className="mt-12 flex flex-col items-center justify-center">
           <BarLoader color="#ffffff" width={200} />
