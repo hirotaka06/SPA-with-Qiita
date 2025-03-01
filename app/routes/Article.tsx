@@ -35,7 +35,7 @@ export default function Article({ params }: Route.ComponentProps) {
           </Button>
         </Link>
         <h1 className="text-3xl font-semibold mb-4 mt-6 pb-2">{data?.title}</h1>
-        <div className="article-content mt-2">
+        <div className="article-content my-2">
           <div className="prose markdown">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {data?.body}

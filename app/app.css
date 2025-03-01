@@ -138,11 +138,11 @@
 }
 
 .markdown h1 {
-  @apply leading-tight border-b border-[#151B23] text-3xl font-semibold mb-4 mt-6 pb-2;
+  @apply leading-tight border-b border-[#232D3A] text-3xl font-semibold mb-4 mt-6 pb-2;
 }
 
 .markdown h2 {
-  @apply leading-tight border-b border-[#151B23] text-2xl font-semibold mb-4 mt-6 pb-2;
+  @apply leading-tight border-b border-[#232D3A] text-2xl font-semibold mb-4 mt-6 pb-2;
 }
 
 .markdown h3 {
@@ -162,7 +162,7 @@
 }
 
 .markdown blockquote {
-  @apply text-base border-l-6 border-[#151B23] pl-4 pr-4 text-white/70;
+  @apply text-base border-l-6 border-[#232D3A] pl-4 pr-4 text-white/70;
 }
 
 .markdown code {
@@ -171,6 +171,23 @@
 
 .markdown pre {
   @apply bg-[#151B23] rounded p-4 overflow-x-auto;
+}
+
+/* スクロールバーのスタイル */
+.markdown pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+.markdown pre::-webkit-scrollbar-track {
+  @apply bg-gray-800 rounded;
+}
+
+.markdown pre::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded;
+}
+
+.markdown pre::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-700;
 }
 
 .markdown pre code {
@@ -190,15 +207,39 @@
 }
 
 .markdown table {
-  @apply text-base border-gray-600;
+  @apply block overflow-x-auto text-base rounded-md bg-[#151B23] w-full;
+}
+
+/* スクロールバーのスタイル */
+.markdown table::-webkit-scrollbar {
+  height: 4px;
+}
+
+.markdown table::-webkit-scrollbar-track {
+  @apply bg-gray-700 rounded;
+}
+
+.markdown table::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded;
+}
+
+.markdown table::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
 }
 
 .markdown th {
-  @apply border py-1 px-3;
+  @apply py-2 px-4 bg-black text-white font-semibold border-b border-gray-600;
 }
 
 .markdown td {
-  @apply border py-1 px-3;
+  @apply py-2 px-4 border-b border-gray-600;
+}
+.markdown tr:nth-child(even) {
+  @apply bg-black;
+}
+
+.markdown tr:hover {
+  @apply bg-gray-800;
 }
 
 .markdown hr {
