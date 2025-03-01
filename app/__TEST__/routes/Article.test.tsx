@@ -55,6 +55,6 @@ test('記事の詳細が正しく表示される', async () => {
     },
   );
 
-  const articleTitle = await screen.findByText('Article 1');
-  expect(articleTitle).toBeInTheDocument();
+  const article = await screen.findByText('これはArticle 1');
+  expect(article).toBeInTheDocument();
 });

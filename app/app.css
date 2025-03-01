@@ -108,3 +108,140 @@
   background-size: 10px 10px;
   background-color: #23232340;
 }
+
+.markdown {
+  @apply text-white leading-normal break-words;
+}
+
+.markdown > * + * {
+  @apply mt-0 mb-4;
+}
+
+.markdown li + li {
+  @apply mt-1;
+}
+
+.markdown li > p + p {
+  @apply mt-6;
+}
+
+.markdown strong {
+  @apply font-semibold;
+}
+
+.markdown a {
+  @apply text-[#4593F8] font-semibold;
+}
+
+.markdown strong a {
+  @apply font-bold;
+}
+
+.markdown h1 {
+  @apply leading-tight border-b border-[#232D3A] text-3xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.markdown h2 {
+  @apply leading-tight border-b border-[#232D3A] text-2xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.markdown h3 {
+  @apply leading-snug text-lg font-semibold mb-4 mt-6;
+}
+
+.markdown h4 {
+  @apply leading-none text-base font-semibold mb-4 mt-6;
+}
+
+.markdown h5 {
+  @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.markdown h6 {
+  @apply leading-tight text-sm font-semibold text-gray-600 mb-4 mt-6;
+}
+
+.markdown blockquote {
+  @apply text-base border-l-6 border-[#232D3A] pl-4 pr-4 text-white/70;
+}
+
+.markdown code {
+  @apply font-mono text-sm inline bg-[#151B23] rounded px-1 py-0.5;
+}
+
+.markdown pre {
+  @apply bg-[#151B23] rounded p-4 overflow-x-auto;
+}
+
+/* スクロールバーのスタイル */
+.markdown pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+.markdown pre::-webkit-scrollbar-track {
+  @apply bg-gray-800 rounded;
+}
+
+.markdown pre::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded;
+}
+
+.markdown pre::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-700;
+}
+
+.markdown pre code {
+  @apply block bg-transparent p-0 overflow-visible rounded-none;
+}
+
+.markdown ul {
+  @apply text-base pl-8 list-disc;
+}
+
+.markdown ol {
+  @apply text-base pl-8 list-decimal;
+}
+
+.markdown kbd {
+  @apply text-xs inline-block rounded border px-1 py-0.5 align-middle font-normal font-mono shadow;
+}
+
+.markdown table {
+  @apply block overflow-x-auto text-base rounded-md bg-[#151B23] w-full;
+}
+
+/* スクロールバーのスタイル */
+.markdown table::-webkit-scrollbar {
+  height: 4px;
+}
+
+.markdown table::-webkit-scrollbar-track {
+  @apply bg-gray-700 rounded;
+}
+
+.markdown table::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded;
+}
+
+.markdown table::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.markdown th {
+  @apply py-2 px-4 bg-black text-white font-semibold border-b border-gray-600;
+}
+
+.markdown td {
+  @apply py-2 px-4 border-b border-gray-600;
+}
+.markdown tr:nth-child(even) {
+  @apply bg-black;
+}
+
+.markdown tr:hover {
+  @apply bg-gray-800;
+}
+
+.markdown hr {
+  @apply border-b border-[#151B23];
+}

@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { keywordAtom, pageAtom } from '~/atoms/articleAtoms';
 import { Search } from 'lucide-react';
 import { Input } from '~/components/ui/input';
@@ -11,8 +11,8 @@ interface SearchFormData {
 
 export default function SearchForm() {
   const { register, handleSubmit } = useForm<SearchFormData>();
-  const [, setKeyword] = useAtom(keywordAtom);
-  const [, setPage] = useAtom(pageAtom);
+  const setKeyword = useSetAtom(keywordAtom);
+  const setPage = useSetAtom(pageAtom);
 
   const onSubmit = (data: SearchFormData) => {
     setKeyword(data.keyword);
