@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useAtomValue } from 'jotai';
 import { apiTokenAtom } from '~/atoms/articleAtoms';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function meta({ params }: Route.MetaArgs) {
   const { articleId } = params;
@@ -33,8 +34,13 @@ export default function Article({ params }: Route.ComponentProps) {
             <ArrowLeft />
           </Button>
         </Link>
+        <h1 className="text-3xl font-semibold mb-4 mt-6 pb-2">{data?.title}</h1>
         <div className="article-content mt-2">
-          <ReactMarkdown>{data?.body}</ReactMarkdown>
+          <div className="prose markdown">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {data?.body}
+            </ReactMarkdown>
+          </div>
         </div>
       </div>
     </div>
