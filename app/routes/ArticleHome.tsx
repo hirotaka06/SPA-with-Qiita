@@ -5,8 +5,9 @@ import { useFetchArticles } from '~/hooks/useFetchArticles';
 import { Link } from 'react-router';
 import { keywordAtom, apiTokenAtom, pageAtom } from '~/atoms/articleAtoms';
 import ArticleCard from '~/components/ArticleCard';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import BarLoader from 'react-spinners/BarLoader';
+import { Button } from '~/components/ui/button';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -52,17 +53,28 @@ export default function ArticleHome() {
           ))}
       </div>
       {data && (
-        <div className="my-4 flex justify-between w-[calc(100%-8rem)] px-8 text-black">
-          <button
-            onClick={handlePreviousPage}
-            className="p-2 bg-white rounded"
-            disabled={page === 1}
-          >
-            <ArrowLeft />
-          </button>
-          <button onClick={handleNextPage} className="p-2 bg-white rounded">
-            <ArrowRight />
-          </button>
+        <div className="my-6 flex justify-between px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-black">
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={handlePreviousPage}
+              className={`rounded ${page === 1 ? 'bg-black text-black hover:bg-black hover:text-black' : 'bg-black hover:bg-[#222222]'}`}
+            >
+              <ChevronLeft />
+            </Button>
+            <p className={`${page === 1 ? 'text-black' : 'text-white'}`}>
+              前へ
+            </p>
+          </div>
+          <p className="text-2xl text-white">{page}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-white">次へ</p>
+            <Button
+              onClick={handleNextPage}
+              className="bg-black hover:bg-[#222222] rounded"
+            >
+              <ChevronRight />
+            </Button>
+          </div>
         </div>
       )}
     </div>
