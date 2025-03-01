@@ -9,14 +9,14 @@
     "typecheck": "react-router typegen && tsc",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "--- TEST SECTION ---": "--- --- --- --- ---",
     "test": "vitest",
     "--- CI SECTION ---": "--- --- --- --- ---",
     "ci:check": "yarn eslint . && yarn prettier --check .",
     "ci:build": "yarn build",
-    "ci:test": "yarn test",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "ci:test": "yarn test"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.3",
