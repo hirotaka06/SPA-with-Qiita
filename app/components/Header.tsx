@@ -39,15 +39,26 @@ export default function Header() {
             {/* 検索バー*/}
             <SearchForm />
             {/* APIトークン入力フォーム表示ボタン */}
-            <Button
-              onClick={toggleApiForm}
-              className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222] ${
-                isApiFormVisible ? 'border-red-600 text-red-600' : ''
-              }`}
-              aria-label="APIトークンを入力"
-            >
-              {isApiFormVisible ? <X /> : <Settings />}
-            </Button>
+            <div className="relative group">
+              <Button
+                onClick={toggleApiForm}
+                className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222] ${
+                  isApiFormVisible ? 'border-[#4593F8] text-[#4593F8]' : ''
+                }`}
+                aria-label="APIトークンを入力"
+              >
+                {isApiFormVisible ? (
+                  <X />
+                ) : (
+                  <>
+                    <Settings />
+                    <span className="opacity-0 w-16 invisible rounded text-sm text-white bg-[#111111] py-1 top-14 -left-1 group-hover:visible group-hover:opacity-100 absolute">
+                      設定
+                    </span>
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </header>

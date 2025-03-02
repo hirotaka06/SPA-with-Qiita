@@ -16,10 +16,12 @@ export function useFetchArticles(
             Authorization: `Bearer ${apiToken}`,
           },
           params: {
-            fields: 'id,title,created_at,likes_count,tags,user',
+            fields: 'id,title,created_at,likes_count,tags,user,body',
             page: page.toString(),
             per_page: '30',
-            query: keyword ? `tag:${keyword} OR body:${keyword}` : undefined,
+            query: keyword
+              ? `title:${keyword} OR body:${keyword} OR tags:${keyword}`
+              : undefined,
           },
         });
         return response.data;
