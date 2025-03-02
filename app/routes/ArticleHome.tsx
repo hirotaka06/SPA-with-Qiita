@@ -54,17 +54,24 @@ export default function ArticleHome() {
       )}
       <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white">
         {data && (
-          <div className="relative flex items-center my-4">
-            <div className="text-xl font-medium text-white ml-4">
-              {keyword ? '検索結果' : '新着記事'}
-            </div>
-            <div className="flex-grow border-t border-white ml-4"></div>
-            <div className="text-md text-white mr-4">
-              <span className="inline-block w-6 h-6 text-center border border-white rounded-full">
+          <>
+            <div className="flex justify-between items-end">
+              <div className="relative flex flex-col my-4 ml-4 space-y-2">
+                <h1 className="text-2xl font-medium text-white">
+                  {keyword ? '検索結果' : '新着記事'}
+                </h1>
+                <p className="text-white/60 text-sm">
+                  {keyword
+                    ? '検索キーワードを含む最新の記事'
+                    : 'Qiitaに投稿された最新の記事'}
+                </p>
+              </div>
+              <h1 className="text-6xl font-extrabold text-white/30 my-4 mr-4">
                 {page}
-              </span>
+              </h1>
             </div>
-          </div>
+            <hr className="border-t border-white/30 mb-4 mx-2" />
+          </>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {data &&

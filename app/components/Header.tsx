@@ -43,7 +43,7 @@ export default function Header() {
               <Button
                 onClick={toggleApiForm}
                 className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222] ${
-                  isApiFormVisible ? 'border-red-600 text-red-600' : ''
+                  isApiFormVisible ? 'border-[#4593F8] text-[#4593F8]' : ''
                 }`}
                 aria-label="APIトークンを入力"
               >
