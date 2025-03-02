@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import { useFetchArticle } from '~/hooks/useFetchArticle';
 import { ChevronLeft } from 'lucide-react';
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { apiTokenAtom } from '~/atoms/articleAtoms';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -18,11 +19,18 @@ export function meta({ params }: Route.MetaArgs) {
 }
 
 export default function Article({ params }: Route.ComponentProps) {
-  const apiToken = useAtomValue(apiTokenAtom);
+  const [apiToken, setApiToken] = useAtom(apiTokenAtom);
   const { data, error, isLoading } = useFetchArticle(
     params.articleId,
     apiToken,
   );
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('apiToken');
+    if (storedToken) {
+      setApiToken(storedToken);
+    }
+  }, [setApiToken]);
 
   return (
     <div className="flex flex-col items-center justify-center mt-4">
