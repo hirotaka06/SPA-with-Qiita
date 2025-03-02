@@ -35,15 +35,19 @@ export default function Article({ params }: Route.ComponentProps) {
   return (
     <div className="flex flex-col items-center justify-center">
       {!apiToken && (
-        <div className="text-white mt-4">APIトークンを入力してください</div>
+        <div className="text-white mt-4 h-[calc(100vh-10rem)] w-full flex items-center justify-center">
+          APIトークンを入力してください
+        </div>
       )}
       {error && apiToken && (
-        <div className="text-white mt-4">Error: {error.message}</div>
+        <div className="text-white mt-4 h-[calc(100vh-10rem)] flex items-center justify-center mx-12">
+          Error: {error.message}
+        </div>
       )}
       {isLoading && apiToken && (
-        <div className="mt-16 flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-10rem)] w-full">
           <BarLoader color="#ffffff" width={200} />
-          <p className="text-white mt-6">読み込み中</p>
+          <p className="text-white mt-8">読み込み中</p>
         </div>
       )}
       {data && (
