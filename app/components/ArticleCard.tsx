@@ -44,7 +44,7 @@ export default function ArticleCard({
             </div>
 
             {/* 本文の表示 */}
-            <div className="hidden md:block text-sm text-gray-300 opacity-0 group-hover:opacity-100 duration-800 delay-200">
+            <div className="hidden lg:block text-sm text-gray-300 opacity-0 group-hover:opacity-100 duration-600 delay-100">
               <p className="line-clamp-3 h-14">{body}</p>
             </div>
 

@@ -52,15 +52,25 @@ export default function ArticleHome() {
           <p className="text-white mt-6">読み込み中</p>
         </div>
       )}
-      <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white grid grid-cols-1 md:grid-cols-3 gap-4">
-        {data &&
-          data.map((article: ArticleType, index: number) => (
-            <div key={index}>
-              <Link to={`/${article.id}`}>
-                <ArticleCard {...article} />
-              </Link>
+      <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white">
+        {data && (
+          <div className="relative flex items-center my-4">
+            <div className="text-xl font-medium text-white mx-4">
+              {keyword ? '検索結果' : '新着記事'}
             </div>
-          ))}
+            <div className="flex-grow border-t border-white/60 mr-4"></div>
+          </div>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {data &&
+            data.map((article: ArticleType, index: number) => (
+              <div key={index}>
+                <Link to={`/${article.id}`}>
+                  <ArticleCard {...article} />
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
       {data && (
         <div className="my-6 flex justify-between px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-black">
