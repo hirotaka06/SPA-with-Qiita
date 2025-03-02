@@ -22,7 +22,7 @@ export default function SearchForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-full max-w-3xl border border-gray-800 rounded-md mx-2"
+      className="flex w-full max-w-3xl border border-white/30 rounded-md mx-2"
     >
       <div className="relative flex-1 text-white">
         <Input
@@ -35,10 +35,9 @@ export default function SearchForm() {
       <Button
         type="submit"
         size="icon"
-        className="h-12 w-12 rounded-l-none rounded-r-md bg-white text-black hover:bg-gray-200"
+        className="h-12 w-12 rounded-l-none rounded-r-md bg-black text-white hover:bg-[#222222]"
       >
         <Search className="h-5 w-5" />
-        <span className="sr-only">検索</span>
       </Button>
     </form>
   );
