@@ -8,6 +8,7 @@ import ArticleCard from '~/components/ArticleCard';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import BarLoader from 'react-spinners/BarLoader';
 import { Button } from '~/components/ui/button';
+import { useEffect } from 'react';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -18,9 +19,16 @@ export function meta({}: Route.MetaArgs) {
 
 export default function ArticleHome() {
   const keyword = useAtomValue(keywordAtom);
-  const apiToken = useAtomValue(apiTokenAtom);
+  const [apiToken, setApiToken] = useAtom(apiTokenAtom);
   const [page, setPage] = useAtom(pageAtom);
   const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('apiToken');
+    if (storedToken) {
+      setApiToken(storedToken);
+    }
+  }, [setApiToken]);
 
   const handleNextPage = () => {
     setPage((prevPage) => prevPage + 1);

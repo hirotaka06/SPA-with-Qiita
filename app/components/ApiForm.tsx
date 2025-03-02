@@ -20,6 +20,7 @@ export default function ApiForm() {
 
   const onSubmit = async (formData: FormData) => {
     setApiToken(formData.token);
+    localStorage.setItem('apiToken', formData.token);
   };
 
   return (
