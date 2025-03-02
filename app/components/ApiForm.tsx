@@ -25,6 +25,7 @@ export default function ApiForm() {
 
   return (
     <div className="bg-[#222222] rounded-md p-4">
+      <div className="absolute top-[-16px] right-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent border-b-[16px] border-b-[#222222] mr-6"></div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-full rounded-md "
