@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'New Home' },
+    { title: 'Cyber City' },
     { name: 'description', content: 'Welcome to React Router!' },
   ];
 }

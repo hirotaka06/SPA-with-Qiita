@@ -52,7 +52,7 @@ export default function Header() {
       {/* APIフォームの表示 */}
       {isApiFormVisible && (
         <>
-          <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
+          <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
           <div className="fixed top-32 w-[80%] lg:w-[30%] right-[3%] lg:right-12 z-50 ">
             <ApiForm />
           </div>
