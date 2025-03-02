@@ -24,15 +24,15 @@ export default function ApiForm() {
   };
 
   return (
-    <div className="bg-white rounded-xl p-4">
+    <div className="bg-[#222222] rounded-md p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-full rounded-md "
       >
-        <label className="text-sm">Qiita APIトークン</label>
+        <label className="text-sm text-white">Qiita APIトークン</label>
         <Input
           id="api-token"
-          type="text"
+          type="password"
           {...register('token', {
             required: 'APIトークンは必須です',
             minLength: {
@@ -41,16 +41,16 @@ export default function ApiForm() {
             },
           })}
           placeholder="APIトークンを入力..."
-          className={`mt-1 border bg-black text-white ring-2 ${errors.token ? 'ring-red-700' : 'focus:ring-blue-700'}`}
+          className={`mt-2 h-12 ring-white/30 bg-black text-white ring  ${errors.token ? 'ring-red-600' : 'focus:ring-[#4593F8]'}`}
         />
         {errors.token && (
-          <span className="text-red-700 text-sm mt-1">
+          <span className="text-red-600 text-sm mt-1">
             {errors.token.message}
           </span>
         )}
         <Button
           type="submit"
-          className="px-2 mt-2 shadow-sm text-black border bg-white hover:bg-gray-200"
+          className="px-2 mt-4 shadow-sm text-black border bg-white hover:bg-gray-200"
           aria-label="トークンを確認"
         >
           <Check />

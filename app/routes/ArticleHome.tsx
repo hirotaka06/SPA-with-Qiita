@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'New Home' },
+    { title: 'Cyber City' },
     { name: 'description', content: 'Welcome to React Router!' },
   ];
 }
@@ -43,14 +43,16 @@ export default function ArticleHome() {
       {!apiToken && (
         <div className="text-white">APIトークンを入力してください</div>
       )}
+      {error && apiToken && (
+        <div className="text-white">Error: {error.message}</div>
+      )}
       {isLoading && apiToken && (
         <div className="mt-12 flex flex-col items-center justify-center">
           <BarLoader color="#ffffff" width={200} />
-          <p className="text-white mt-4">読み込み中</p>
+          <p className="text-white mt-6">読み込み中</p>
         </div>
       )}
       <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white grid grid-cols-1 md:grid-cols-3 gap-4">
-        {error && apiToken && <div>Error: {error.message}</div>}
         {data &&
           data.map((article: ArticleType, index: number) => (
             <div key={index}>
