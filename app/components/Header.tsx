@@ -41,7 +41,7 @@ export default function Header() {
             {/* APIトークン入力フォーム表示ボタン */}
             <Button
               onClick={toggleApiForm}
-              className="h-12 rounded-md bg-white text-black hover:bg-gray-200"
+              className="w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222]"
               aria-label="APIトークンを入力"
             >
               <Settings />
