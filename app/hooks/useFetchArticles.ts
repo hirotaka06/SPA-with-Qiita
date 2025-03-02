@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import type { ArticleType } from '~/types/article';
+import { getErrorMessage } from '~/utils/errorHandler';
 
 export function useFetchArticles(
   keyword: string,
@@ -26,10 +27,12 @@ export function useFetchArticles(
         });
         return response.data;
       } catch (error) {
-        if (axios.isAxiosError(error) && error.response?.status === 401) {
-          throw new Error('無効なAPIトークンです。');
+        if (axios.isAxiosError(error) && error.response) {
+          throw new Error(getErrorMessage(error.response.status));
         }
-        throw error;
+        throw new Error(
+          'アプリ内で予期しないエラーが発生しました。アプリ製作者にお問い合わせください。',
+        );
       }
     },
     enabled: !!apiToken,
