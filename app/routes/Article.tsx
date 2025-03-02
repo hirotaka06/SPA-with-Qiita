@@ -33,15 +33,15 @@ export default function Article({ params }: Route.ComponentProps) {
   }, [setApiToken]);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-4">
+    <div className="flex flex-col items-center justify-center">
       {!apiToken && (
-        <div className="text-white">APIトークンを入力してください</div>
+        <div className="text-white mt-4">APIトークンを入力してください</div>
       )}
       {error && apiToken && (
-        <div className="text-white">Error: {error.message}</div>
+        <div className="text-white mt-4">Error: {error.message}</div>
       )}
       {isLoading && apiToken && (
-        <div className="mt-12 flex flex-col items-center justify-center">
+        <div className="mt-16 flex flex-col items-center justify-center">
           <BarLoader color="#ffffff" width={200} />
           <p className="text-white mt-6">読み込み中</p>
         </div>

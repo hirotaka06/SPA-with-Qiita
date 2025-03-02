@@ -42,8 +42,10 @@ export default function Header() {
             <div className="relative group">
               <Button
                 onClick={toggleApiForm}
-                className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222] ${
-                  isApiFormVisible ? 'border-[#4593F8] text-[#4593F8]' : ''
+                className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:border-white/60 hover:bg-black ${
+                  isApiFormVisible
+                    ? 'border-[#4593F8] text-[#4593F8] hover:border-blue-600 hover:bg-black hover:text-blue-600'
+                    : ''
                 }`}
                 aria-label="APIトークンを入力"
               >

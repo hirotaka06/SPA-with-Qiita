@@ -66,7 +66,8 @@ export default function ArticleHome() {
                     : 'Qiitaに投稿された最新の記事'}
                 </p>
               </div>
-              <h1 className="text-6xl font-extrabold text-white/30 my-4 mr-4">
+              <h1 className="text-7xl font-extrabold text-white/30 my-3 mr-4">
+                <small className="text-white/30 text-sm mr-1">PAGE</small>
                 {page}
               </h1>
             </div>
