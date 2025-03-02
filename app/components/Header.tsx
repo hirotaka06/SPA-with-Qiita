@@ -3,7 +3,7 @@ import SearchForm from '~/components/SerchForm';
 import ApiForm from '~/components/ApiForm';
 import { useState, useEffect } from 'react';
 import { Button } from '~/components/ui/button';
-import { Settings } from 'lucide-react';
+import { Settings, X } from 'lucide-react';
 
 export default function Header() {
   const [isApiFormVisible, setApiFormVisible] = useState(false);
@@ -41,10 +41,12 @@ export default function Header() {
             {/* APIトークン入力フォーム表示ボタン */}
             <Button
               onClick={toggleApiForm}
-              className="w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222]"
+              className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:bg-[#222222] ${
+                isApiFormVisible ? 'border-red-600 text-red-600' : ''
+              }`}
               aria-label="APIトークンを入力"
             >
-              <Settings />
+              {isApiFormVisible ? <X /> : <Settings />}
             </Button>
           </div>
         </div>
@@ -53,7 +55,7 @@ export default function Header() {
       {isApiFormVisible && (
         <>
           <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
-          <div className="fixed top-32 w-[80%] lg:w-[30%] right-[3%] lg:right-12 z-50 ">
+          <div className="fixed top-28 w-80 right-3 sm:right-5 md:right-8 lg:right-12 z-50 ">
             <ApiForm />
           </div>
         </>
