@@ -9,16 +9,17 @@ export default function ArticleCard({
   tags = [],
   likes_count,
   user,
+  body,
 }: ArticleType) {
   return (
-    <div className="md:w-auto">
+    <div>
       <div className="relative group">
         {/* Top neon line */}
-        <div className="absolute h-px opacity-0 group-hover:opacity-100 transition-all duration-800 ease-in-out inset-x-0 -top-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-rose-500 to-transparent" />
+        <div className="absolute h-px opacity-0 group-hover:opacity-100 transition-all duration-800 ease-in-out inset-x-0 -top-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-700 to-transparent" />
         {/* Bottom neon line */}
         <div className="absolute h-px opacity-100 group-hover:opacity-0 transition-all duration-800 ease-in-out inset-x-0 -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-purple-500 to-transparent" />
 
-        <Card className="w-full bg-black/90 text-white p-6 relative overflow-hidden border border-white/10 transition-colors duration-200 hover:border-pink-500/20 hover:bg-dots">
+        <Card className="w-full bg-black/90 text-white p-6 relative overflow-hidden border border-white/10 transition-colors duration-200 hover:border-sky-600/40 hover:bg-dots">
           <div className="space-y-4">
             {/* Date */}
             <div className="text-sm text-green-200/80 group-hover:text-yellow-300">
@@ -40,6 +41,11 @@ export default function ArticleCard({
                   #{tag.name}
                 </span>
               ))}
+            </div>
+
+            {/* 本文の表示 */}
+            <div className="hidden md:block text-sm text-gray-300 opacity-0 group-hover:opacity-100 duration-800 delay-200">
+              <p className="line-clamp-3 h-14">{body}</p>
             </div>
 
             {/* Bottom section with likes and avatar */}
