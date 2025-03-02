@@ -77,7 +77,7 @@ test('無効なAPIトークンが入力された場合、エラーメッセー�
   await userEvent.click(confirmButton);
 
   const errorMessage = await screen.findByText(
-    'Error: 無効なAPIトークンです。',
+    'Error: 無効なAPIトークンです。トークンを確認し、再試行してください。',
   );
   expect(errorMessage).toBeInTheDocument();
 });
