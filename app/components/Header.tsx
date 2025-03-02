@@ -13,6 +13,7 @@ export default function Header() {
     setApiFormVisible(!isApiFormVisible);
   };
 
+  // スクロールしたらヘッダーに影をつける
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);

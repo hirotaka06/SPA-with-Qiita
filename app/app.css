@@ -162,7 +162,7 @@
 }
 
 .markdown blockquote {
-  @apply text-base border-l-6 border-[#232D3A] pl-4 pr-4 text-white/70;
+  @apply text-base border-l-6 border-[#666666] pl-4 pr-4 text-white/70;
 }
 
 .markdown code {
@@ -228,18 +228,14 @@
 }
 
 .markdown th {
-  @apply py-2 px-4 bg-black text-white font-semibold border-b border-gray-600;
+  @apply py-2 px-4 bg-[#0D1116] text-white font-semibold border-b border-gray-600;
 }
 
 .markdown td {
   @apply py-2 px-4 border-b border-gray-600;
 }
 .markdown tr:nth-child(even) {
-  @apply bg-black;
-}
-
-.markdown tr:hover {
-  @apply bg-gray-800;
+  @apply bg-[#0D1116];
 }
 
 .markdown hr {
