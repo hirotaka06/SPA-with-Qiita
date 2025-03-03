@@ -7,22 +7,44 @@ export function useFetchArticles(
   keyword: string,
   page: number,
   apiToken: string,
+  user?: string,
+  minStocks?: number,
+  fromDate?: string,
 ) {
   return useQuery<ArticleType[]>({
-    queryKey: ['articles', keyword, page, apiToken],
+    queryKey: ['articles', keyword, page, apiToken, user, minStocks, fromDate],
     queryFn: async () => {
       try {
+        const queryParts = [];
+        const dateFilter = fromDate
+          ? `created:>${new Date(fromDate).toISOString().split('T')[0]}`
+          : '';
+        const userFilter = user ? `user:${user}` : '';
+        const stocksFilter = minStocks ? `stocks:>=${minStocks}` : '';
+
+        if (keyword) {
+          queryParts.push(
+            `title:${keyword} ${dateFilter} ${userFilter} ${stocksFilter}`,
+            `body:${keyword} ${dateFilter} ${userFilter} ${stocksFilter}`,
+            `tags:${keyword} ${dateFilter} ${userFilter} ${stocksFilter}`,
+          );
+        } else {
+          queryParts.push(`${dateFilter} ${userFilter} ${stocksFilter}`);
+        }
+
+        const query =
+          queryParts.length > 0 && queryParts.some((part) => part.trim() !== '')
+            ? queryParts.join(' OR ')
+            : undefined;
+
         const response = await axios.get('https://qiita.com/api/v2/items', {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
           params: {
-            fields: 'id,title,created_at,likes_count,tags,user,body',
             page: page.toString(),
             per_page: '30',
-            query: keyword
-              ? `title:${keyword} OR body:${keyword} OR tags:${keyword}`
-              : undefined,
+            query,
           },
         });
         return response.data;

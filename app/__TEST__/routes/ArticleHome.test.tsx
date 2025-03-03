@@ -5,6 +5,11 @@ import ArticleHome from '~/routes/ArticleHome';
 import userEvent from '@testing-library/user-event';
 import ArticleLayout from '~/routes/ArticleLayout';
 
+// 各テストの前にローカルストレージをクリア
+beforeEach(() => {
+  localStorage.clear();
+});
+
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -44,13 +49,15 @@ test('APIトークンが確認された後に記事が表示される', async ()
   );
 
   const settingsButton = screen.getByRole('button', {
-    name: 'APIトークンを入力',
+    name: '設定フォームを表示',
   });
   await userEvent.click(settingsButton);
 
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
   await userEvent.type(tokenInput, 'valid-token');
-  const confirmButton = screen.getByRole('button', { name: 'トークンを確認' });
+  const confirmButton = screen.getByRole('button', {
+    name: 'APIトークンを登録',
+  });
   await userEvent.click(confirmButton);
 
   const articleElement2 = await screen.findByText('Article 1');
@@ -67,15 +74,16 @@ test('無効なAPIトークンが入力された場合、エラーメッセー�
   );
 
   const settingsButton = screen.getByRole('button', {
-    name: 'APIトークンを入力',
+    name: '設定フォームを表示',
   });
   await userEvent.click(settingsButton);
 
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
   await userEvent.type(tokenInput, 'invalid-token');
-  const confirmButton = screen.getByRole('button', { name: 'トークンを確認' });
+  const confirmButton = screen.getByRole('button', {
+    name: 'APIトークンを登録',
+  });
   await userEvent.click(confirmButton);
-
   const errorMessage = await screen.findByText(
     'Error: 無効なAPIトークンです。トークンを確認し、再試行してください。',
   );

@@ -9,6 +9,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import BarLoader from 'react-spinners/BarLoader';
 import { Button } from '~/components/ui/button';
 import { useEffect } from 'react';
+import { optionsAtom } from '~/atoms/optionsAtom';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,7 +22,15 @@ export default function ArticleHome() {
   const keyword = useAtomValue(keywordAtom);
   const [apiToken, setApiToken] = useAtom(apiTokenAtom);
   const [page, setPage] = useAtom(pageAtom);
-  const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
+  const options = useAtomValue(optionsAtom);
+  const { data, error, isLoading } = useFetchArticles(
+    keyword,
+    page,
+    apiToken,
+    options.user,
+    options.minStocks,
+    options.fromDate,
+  );
 
   useEffect(() => {
     const storedToken = localStorage.getItem('apiToken');
@@ -41,19 +50,23 @@ export default function ArticleHome() {
   return (
     <div className="flex flex-col items-center justify-center">
       {!apiToken && (
-        <div className="text-white mt-4">APIトークンを入力してください</div>
+        <div className="text-white mt-4 h-[calc(100vh-10rem)] w-full flex items-center justify-center">
+          APIトークンを入力してください
+        </div>
       )}
       {error && apiToken && (
-        <div className="text-white mt-4">Error: {error.message}</div>
+        <div className="text-white mt-4 h-[calc(100vh-10rem)] flex items-center justify-center mx-12">
+          Error: {error.message}
+        </div>
       )}
       {isLoading && apiToken && (
-        <div className="mt-16 flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-10rem)] w-full">
           <BarLoader color="#ffffff" width={200} />
-          <p className="text-white mt-6">読み込み中</p>
+          <p className="text-white mt-8">読み込み中</p>
         </div>
       )}
       <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white">
-        {data && (
+        {data && apiToken && (
           <>
             <div className="flex justify-between items-end">
               <div className="relative flex flex-col my-4 ml-4 space-y-2">
@@ -76,6 +89,7 @@ export default function ArticleHome() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {data &&
+            apiToken &&
             data.map((article: ArticleType, index: number) => (
               <div key={index}>
                 <Link to={`/${article.id}`}>
@@ -85,7 +99,7 @@ export default function ArticleHome() {
             ))}
         </div>
       </div>
-      {data && (
+      {data && apiToken && (
         <div className="my-6 flex justify-between px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-black">
           <div className="flex items-center gap-2">
             <Button
