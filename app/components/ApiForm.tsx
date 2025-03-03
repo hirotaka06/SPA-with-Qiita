@@ -30,21 +30,22 @@ export default function ApiForm() {
       setButtonLabel('APIトークンを上書き');
       setCurrentToken(storedToken);
     }
-  }, []);
+  }, [currentToken]);
 
   const onSubmit = async (formData: FormData) => {
     setApiToken(formData.token);
     localStorage.setItem('apiToken', formData.token);
+    setCurrentToken(formData.token);
   };
 
   return (
     <div className="mt-6">
-      <Label className="text-sm text-white flex items-center mx-1 mb-1">
+      <Label className="text-md text-white flex items-center mx-1 mb-1">
         Qiita APIトークン
         <span className="flex-grow border-t border-white/60"></span>
       </Label>
       {currentToken && (
-        <div className="ml-1 mt-2 mb-1 flex items-center text-white text-sm">
+        <div className="ml-1 mt-3 mb-2 flex font-medium items-center text-white/60 text-sm">
           <Key className="w-4 h-4 mr-2" />
           現在のAPIトークン: {currentToken.slice(0, 5)}*****
         </div>
