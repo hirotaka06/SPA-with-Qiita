@@ -61,13 +61,15 @@ test('記事の詳細が正しく表示される', async () => {
   );
 
   const settingsButton = screen.getByRole('button', {
-    name: 'APIトークンを入力',
+    name: '設定フォームを表示',
   });
   await userEvent.click(settingsButton);
 
   const tokenInput = screen.getByPlaceholderText('APIトークンを入力...');
   await userEvent.type(tokenInput, 'valid-token');
-  const confirmButton = screen.getByRole('button', { name: 'トークンを確認' });
+  const confirmButton = screen.getByRole('button', {
+    name: 'APIトークンを登録',
+  });
   await userEvent.click(confirmButton);
 
   const article = await screen.findByText('これはArticle 1');

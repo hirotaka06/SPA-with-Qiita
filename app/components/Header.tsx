@@ -48,7 +48,7 @@ export default function Header() {
                     ? 'border-[#4593F8] text-[#4593F8] hover:border-blue-600 hover:bg-black hover:text-blue-600 shadow-blue-500/40 shadow-lg'
                     : ''
                 }`}
-                aria-label="APIトークンを入力"
+                aria-label="設定フォームを表示"
               >
                 {isApiFormVisible ? (
                   <X />
