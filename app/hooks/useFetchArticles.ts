@@ -28,20 +28,14 @@ export function useFetchArticles(
             `body:${keyword} ${dateFilter} ${userFilter} ${stocksFilter}`,
             `tags:${keyword} ${dateFilter} ${userFilter} ${stocksFilter}`,
           );
+        } else {
+          queryParts.push(`${dateFilter} ${userFilter} ${stocksFilter}`);
         }
-        if (!keyword) {
-          if (dateFilter) {
-            queryParts.push(dateFilter);
-          }
-          if (userFilter) {
-            queryParts.push(userFilter);
-          }
-          if (stocksFilter) {
-            queryParts.push(stocksFilter);
-          }
-        }
+
         const query =
-          queryParts.length > 0 ? queryParts.join(' OR ') : undefined;
+          queryParts.length > 0 && queryParts.some((part) => part.trim() !== '')
+            ? queryParts.join(' OR ')
+            : undefined;
 
         const response = await axios.get('https://qiita.com/api/v2/items', {
           headers: {

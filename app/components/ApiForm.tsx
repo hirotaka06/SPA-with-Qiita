@@ -5,6 +5,8 @@ import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { Check } from 'lucide-react';
 import { Label } from '~/components/ui/label';
+import { useEffect, useState } from 'react';
+import { Key } from 'lucide-react';
 
 interface FormData {
   token: string;
@@ -19,16 +21,34 @@ export default function ApiForm() {
 
   const setApiToken = useSetAtom(apiTokenAtom);
 
+  const [buttonLabel, setButtonLabel] = useState('APIトークンを登録');
+  const [currentToken, setCurrentToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('apiToken');
+    if (storedToken) {
+      setButtonLabel('APIトークンを上書き');
+      setCurrentToken(storedToken);
+    }
+  }, []);
+
   const onSubmit = async (formData: FormData) => {
     setApiToken(formData.token);
     localStorage.setItem('apiToken', formData.token);
   };
+
   return (
     <div className="mt-6">
       <Label className="text-sm text-white flex items-center mx-1 mb-1">
         Qiita APIトークン
         <span className="flex-grow border-t border-white/60"></span>
       </Label>
+      {currentToken && (
+        <div className="ml-1 mt-2 mb-1 flex items-center text-white text-sm">
+          <Key className="w-4 h-4 mr-2" />
+          現在のAPIトークン: {currentToken.slice(0, 5)}*****
+        </div>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col mx-1 rounded-md justify-center"
@@ -54,10 +74,10 @@ export default function ApiForm() {
         <Button
           type="submit"
           className="px-2 mt-4 text-black border bg-white hover:bg-white/80 shadow-white/30 shadow-lg"
-          aria-label="トークンを確認"
+          aria-label={buttonLabel}
         >
           <Check />
-          APIトークンを登録
+          {buttonLabel}
         </Button>
       </form>
     </div>
