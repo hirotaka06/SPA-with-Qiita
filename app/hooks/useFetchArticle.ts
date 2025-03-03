@@ -5,7 +5,7 @@ import { getErrorMessage } from '~/utils/errorHandler';
 
 export function useFetchArticle(articleId: string, apiToken: string) {
   return useQuery<ArticleType>({
-    queryKey: ['articles', articleId],
+    queryKey: ['article', articleId, apiToken],
     queryFn: async () => {
       try {
         const response = await axios.get(
@@ -26,6 +26,6 @@ export function useFetchArticle(articleId: string, apiToken: string) {
         );
       }
     },
-    enabled: !!articleId,
+    enabled: !!articleId && !!apiToken,
   });
 }

@@ -9,10 +9,17 @@ export const handlers = [
     }
     return HttpResponse.json(mockData);
   }),
+
   // 特定のIDのアイテムを返すハンドラー
-  http.get('https://qiita.com/api/v2/items/:id', (req) => {
-    const { id } = req.params;
-    const article = mockData.find((data) => data.id === id);
+  http.get('https://qiita.com/api/v2/items/:id', ({ params, request }) => {
+    const token = request.headers.get('Authorization');
+    if (token !== 'Bearer ' + 'valid-token') {
+      return HttpResponse.json({ error: 'Invalid API token' }, { status: 401 });
+    }
+
+    const articleId = params.id;
+    const article = mockData.find((data) => data.id === articleId);
+
     if (article) {
       return HttpResponse.json(article);
     } else {
