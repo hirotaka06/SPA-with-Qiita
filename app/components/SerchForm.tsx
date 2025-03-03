@@ -4,6 +4,7 @@ import { keywordAtom, pageAtom } from '~/atoms/articleAtoms';
 import { Search } from 'lucide-react';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
+import { useNavigate } from 'react-router';
 
 interface SearchFormData {
   keyword: string;
@@ -13,10 +14,12 @@ export default function SearchForm() {
   const { register, handleSubmit } = useForm<SearchFormData>();
   const setKeyword = useSetAtom(keywordAtom);
   const setPage = useSetAtom(pageAtom);
+  const navigate = useNavigate();
 
   const onSubmit = (data: SearchFormData) => {
     setKeyword(data.keyword);
     setPage(1);
+    navigate('/');
   };
 
   return (

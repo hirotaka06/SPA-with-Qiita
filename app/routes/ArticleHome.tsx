@@ -57,7 +57,7 @@ export default function ArticleHome() {
         </div>
       )}
       <div className="px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-white">
-        {data && (
+        {data && apiToken && (
           <>
             <div className="flex justify-between items-end">
               <div className="relative flex flex-col my-4 ml-4 space-y-2">
@@ -80,6 +80,7 @@ export default function ArticleHome() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {data &&
+            apiToken &&
             data.map((article: ArticleType, index: number) => (
               <div key={index}>
                 <Link to={`/${article.id}`}>
@@ -89,7 +90,7 @@ export default function ArticleHome() {
             ))}
         </div>
       </div>
-      {data && (
+      {data && apiToken && (
         <div className="my-6 flex justify-between px-6 w-full md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] text-black">
           <div className="flex items-center gap-2">
             <Button
