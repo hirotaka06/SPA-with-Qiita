@@ -4,6 +4,7 @@ import ApiForm from '~/components/ApiForm';
 import { useState, useEffect } from 'react';
 import { Button } from '~/components/ui/button';
 import { Settings, X } from 'lucide-react';
+import OptionForm from '~/components/OptionForm';
 
 export default function Header() {
   const [isApiFormVisible, setApiFormVisible] = useState(false);
@@ -44,7 +45,7 @@ export default function Header() {
                 onClick={toggleApiForm}
                 className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:border-white/60 hover:bg-black ${
                   isApiFormVisible
-                    ? 'border-[#4593F8] text-[#4593F8] hover:border-blue-600 hover:bg-black hover:text-blue-600'
+                    ? 'border-[#4593F8] text-[#4593F8] hover:border-blue-600 hover:bg-black hover:text-blue-600 shadow-blue-500/40 shadow-lg'
                     : ''
                 }`}
                 aria-label="APIトークンを入力"
@@ -67,8 +68,10 @@ export default function Header() {
       {/* APIフォームの表示 */}
       {isApiFormVisible && (
         <>
-          <div className="fixed inset-0 bg-black opacity-70 z-40"></div>
-          <div className="fixed top-28 w-80 right-3 sm:right-5 md:right-8 lg:right-12 z-50 ">
+          <div className="fixed inset-0 bg-black opacity-80 z-40"></div>
+          <div className="fixed top-28 w-80 right-3 sm:right-5 md:right-8 lg:right-12 z-50 bg-[#1a1a1a] rounded-md p-4 space-y-4">
+            <div className="absolute top-[-16px] right-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent border-b-[16px] border-b-[#1a1a1a] mr-6 space-y-4"></div>
+            <OptionForm />
             <ApiForm />
           </div>
         </>

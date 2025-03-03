@@ -9,6 +9,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import BarLoader from 'react-spinners/BarLoader';
 import { Button } from '~/components/ui/button';
 import { useEffect } from 'react';
+import { optionsAtom } from '~/atoms/optionsAtom';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,7 +22,15 @@ export default function ArticleHome() {
   const keyword = useAtomValue(keywordAtom);
   const [apiToken, setApiToken] = useAtom(apiTokenAtom);
   const [page, setPage] = useAtom(pageAtom);
-  const { data, error, isLoading } = useFetchArticles(keyword, page, apiToken);
+  const options = useAtomValue(optionsAtom);
+  const { data, error, isLoading } = useFetchArticles(
+    keyword,
+    page,
+    apiToken,
+    options.user,
+    options.minStocks,
+    options.fromDate,
+  );
 
   useEffect(() => {
     const storedToken = localStorage.getItem('apiToken');
