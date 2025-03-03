@@ -5,6 +5,11 @@ import Article from '~/routes/Article';
 import userEvent from '@testing-library/user-event';
 import ArticleLayout from '~/routes/ArticleLayout';
 
+// 各テストの前にローカルストレージをクリア
+beforeEach(() => {
+  localStorage.clear();
+});
+
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -30,7 +35,7 @@ const createWrapper = () => {
   return Wrapper;
 };
 
-test('記事の詳細が正しく表示される', async () => {
+test('初回レンダリング時にAPIトークンを入力してくださいが表示される', async () => {
   render(
     <div>
       <ArticleLayout />
@@ -60,6 +65,41 @@ test('記事の詳細が正しく表示される', async () => {
     },
   );
 
+  const articleElement1 =
+    await screen.findByText('APIトークンを入力してください');
+  expect(articleElement1).toBeInTheDocument();
+});
+
+test('記事の詳細が正しく表示される', async () => {
+  render(
+    <div>
+      <Article
+        params={{ articleId: '1' }}
+        loaderData={undefined}
+        matches={[
+          {
+            params: { articleId: '1' },
+            id: 'root',
+            pathname: '',
+            data: undefined,
+            handle: undefined,
+          },
+          {
+            params: { articleId: '1' },
+            id: 'routes/Article',
+            pathname: '/1',
+            data: undefined,
+            handle: undefined,
+          },
+        ]}
+      />
+      <ArticleLayout />
+    </div>,
+    {
+      wrapper: createWrapper(),
+    },
+  );
+
   const settingsButton = screen.getByRole('button', {
     name: '設定フォームを表示',
   });
@@ -72,6 +112,6 @@ test('記事の詳細が正しく表示される', async () => {
   });
   await userEvent.click(confirmButton);
 
-  const article = await screen.findByText('これはArticle 1');
-  expect(article).toBeInTheDocument();
+  const articleElement = await screen.findByText('これはArticle 1');
+  expect(articleElement).toBeInTheDocument();
 });

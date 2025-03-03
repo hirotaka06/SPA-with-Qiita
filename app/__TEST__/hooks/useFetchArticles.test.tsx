@@ -1,58 +1,68 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { useFetchArticles } from '~/hooks/useFetchArticles';
-import { expect, test, vi } from 'vitest';
-import axios from 'axios';
+import { expect, test } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router';
 
-// axiosのモックを作成
-vi.mock('axios');
-const mockedAxios = axios as typeof axios & { get: ReturnType<typeof vi.fn> };
-
-// useFetchArticlesのモックを作成
-vi.mock('~/hooks/useFetchArticles', () => ({
-  useFetchArticles: vi.fn(),
-}));
-
-describe('useFetchArticlesフックのテスト', () => {
-  test('useFetchArticlesが記事データを返す', async () => {
-    const mockData = [
-      { id: '1', title: 'Article 1' },
-      { id: '2', title: 'Article 2' },
-    ];
-
-    // axios.getが呼ばれたときに返すデータを設定
-    mockedAxios.get.mockResolvedValue({ data: mockData });
-
-    // useFetchArticlesのモックを設定
-    (useFetchArticles as ReturnType<typeof vi.fn>).mockReturnValue({
-      data: mockData,
-      error: null,
-      isLoading: false,
-    });
-
-    const { result } = renderHook(() => useFetchArticles());
-
-    // 期待されるデータが返ってくるかを確認
-    expect(result.current.data).toEqual(mockData);
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.error).toBeNull();
+const createWrapper = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
   });
 
-  test('useFetchArticlesがエラーを処理する', async () => {
-    // axios.getがエラーを返すように設定
-    mockedAxios.get.mockRejectedValue(new Error('Network Error'));
+  // eslint-disable-next-line react/prop-types
+  const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <QueryClientProvider client={queryClient}>
+      <MemoryRouter>{children}</MemoryRouter>
+    </QueryClientProvider>
+  );
 
-    // useFetchArticlesのモックを設定
-    (useFetchArticles as ReturnType<typeof vi.fn>).mockReturnValue({
-      data: null,
-      error: new Error('Network Error'),
-      isLoading: false,
-    });
+  Wrapper.displayName = 'QueryClientProviderWrapper';
 
-    const { result } = renderHook(() => useFetchArticles());
+  return Wrapper;
+};
 
-    // エラーメッセージが正しいかを確認
-    expect(result.current.error?.message).toBe('Network Error');
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.data).toBeNull();
+test('useFetchArticlesが正しく動作し、記事が2件取得できる', async () => {
+  const { result } = renderHook(
+    () => useFetchArticles('test', 1, 'valid-token'),
+    {
+      wrapper: createWrapper(),
+    },
+  );
+
+  await waitFor(() => expect(result.current.isSuccess).toBe(true));
+  expect(result.current.data).toHaveLength(2);
+  expect(result.current.isLoading).toBeFalsy();
+  expect(result.current.error).toBeNull();
+});
+
+test('APIトークンがない場合、クエリが無効化される', () => {
+  const { result } = renderHook(() => useFetchArticles('test', 1, ''), {
+    wrapper: createWrapper(),
   });
+
+  expect(result.current.status).toBe('pending');
+  expect(result.current.data).toBeUndefined();
+  expect(result.current.isLoading).toBeFalsy();
+  expect(result.current.error).toBeNull();
+});
+
+test('APIトークンが間違っている場合、401エラーが返される', async () => {
+  const { result } = renderHook(
+    () => useFetchArticles('test', 1, 'invalid-token'),
+    {
+      wrapper: createWrapper(),
+    },
+  );
+
+  await waitFor(() => expect(result.current.status).toBe('error'));
+  expect(result.current.data).toBeUndefined();
+  expect(result.current.isLoading).toBeFalsy();
+  expect(result.current.error).toBeDefined();
+  expect(result.current.error?.message).toBe(
+    '無効なAPIトークンです。トークンを確認し、再試行してください。',
+  );
 });
