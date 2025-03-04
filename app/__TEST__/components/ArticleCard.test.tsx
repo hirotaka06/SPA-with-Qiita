@@ -5,12 +5,6 @@ import type { ArticleType } from '~/types/article';
 
 // 記事のモックデータはコードの下に記載
 
-// 日付フォーマットを統一する関数
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-}
-
 test('タイトルが正しく表示される', () => {
   render(<ArticleCard {...mockArticle} />);
   const titleElement = screen.getByText('Article 1');
@@ -19,9 +13,9 @@ test('タイトルが正しく表示される', () => {
 
 test('作成日が正しく表示される', () => {
   render(<ArticleCard {...mockArticle} />);
-  const formattedDate = formatDate(mockArticle.created_at);
-  const dateElement = screen.getByText(formattedDate);
+  const dateElement = screen.getByText('2025/03/04');
   expect(dateElement).toBeInTheDocument();
+  screen.debug(dateElement);
 });
 
 test('タグが正しく表示される', () => {
