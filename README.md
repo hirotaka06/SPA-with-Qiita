@@ -25,6 +25,8 @@
 ## プロジェクトについて
 
 このプロジェクトは、Qiitaの公開APIを利用して、シングルページアプリケーション（SPA）を構築することを目的としています。
+ページのタイトルは`Cyber City`であり、ロゴは冒頭の3文字を取って`CYB`となっています。ロゴはFigmaにて作成しました。
+(`CYB`は`Detail`の方の細部とページタイトルをかけている)
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
@@ -126,9 +128,9 @@
 
 ## 開発環境構築
 
-<!-- コンテナの作成方法、パッケージのインストール方法など、開発環境構築に必要な情報を記載 -->
+<!-- パッケージのインストール方法など、開発環境構築に必要な情報を記載 -->
 
-### 🐳 コンテナの作成と起動
+### 💡 環境変数の設定
 
 `.env` ファイルを以下の環境変数例を元に作成してください。
 
@@ -138,25 +140,6 @@ PORT=5173
 VITE_QIITA_API_TOKEN=your_qiita_api_token
 ```
 
-`.env` ファイルを作成後、以下のコマンドで開発環境を構築します。
-
-```bash
-docker build -t my-app .
-docker run -p 5173:5173 --env-file .env my-app
-```
-
-### 🔍 動作確認
-
-http://localhost:5173 にアクセスできるか確認してください。アクセスできたら成功です。
-
-### 🛑 コンテナの停止
-
-以下のコマンドでコンテナを停止することができます。
-
-```bash
-docker ps
-docker stop <コンテナID>
-```
 
 ### 🔧 環境変数の一覧
 
@@ -210,5 +193,15 @@ yarn storybook
 ### 🔄 継続的インテグレーション (CI)
 
 このプロジェクトは、[GitHub Actions](https://github.com/features/actions)を使用してCIを実行します。CIの設定は `.github/workflows` ディレクトリ内にあります。
+
+### 🚀 継続的デリバリー (CD)
+
+このプロジェクトでは、[Firebase Hosting](https://firebase.google.com/docs/hosting)を使用して継続的デリバリーを実現しています。以下のワークフローが設定されています：
+
+- **Pull Request時のデプロイ**: プルリクエストが作成されると、`firebase-hosting-pull-request.yml` ワークフローがトリガーされ、Firebase Hostingのプレビュー用チャンネルにデプロイされます。これにより、変更がマージされる前にプレビュー環境で確認することができます。
+
+- **マージ時のデプロイ**: `master` ブランチにプッシュされると、`firebase-hosting-merge.yml` ワークフローがトリガーされ、ライブ環境にデプロイされます。これにより、最新の変更が自動的に本番環境に反映されます。
+
+CDの設定は `.github/workflows` ディレクトリ内にあります。
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
