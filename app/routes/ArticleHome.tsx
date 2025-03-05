@@ -14,7 +14,29 @@ import { optionsAtom } from '~/atoms/optionsAtom';
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Cyber City' },
-    { name: 'description', content: 'Welcome to React Router!' },
+    {
+      name: 'description',
+      content: 'Qiitaに投稿された記事を検索し、詳細を表示します。',
+    },
+    {
+      name: 'keywords',
+      content: 'Qiita, 技術ブログ, プログラミング, 記事検索',
+    },
+    { name: 'author', content: 'Cyber City' },
+    { property: 'og:title', content: `Cyber City` },
+    {
+      property: 'og:description',
+      content: 'Qiitaに投稿された記事を検索し、詳細を表示します。',
+    },
+    { property: 'og:type', content: 'website' },
+    {
+      property: 'og:url',
+      content: `https://cyber-city-d68cf.web.app`,
+    },
+    {
+      property: 'og:image',
+      content: './logo.png',
+    },
   ];
 }
 

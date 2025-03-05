@@ -13,8 +13,30 @@ import BarLoader from 'react-spinners/BarLoader';
 export function meta({ params }: Route.MetaArgs) {
   const { articleId } = params;
   return [
-    { title: `${articleId} の詳細` },
-    { name: 'description', content: 'Welcome to React Router!' },
+    { title: `Qiita記事 ${articleId} の詳細` },
+    {
+      name: 'description',
+      content: 'Qiitaに投稿された記事を検索し、詳細を表示します。',
+    },
+    {
+      name: 'keywords',
+      content: 'Qiita, 技術ブログ, プログラミング, 記事検索',
+    },
+    { name: 'author', content: 'Cyber City' },
+    { property: 'og:title', content: `Qiita記事 ${articleId} の詳細` },
+    {
+      property: 'og:description',
+      content: 'Qiitaに投稿された記事を検索し、詳細を表示します。',
+    },
+    { property: 'og:type', content: 'article' },
+    {
+      property: 'og:url',
+      content: `https://cyber-city-d68cf.web.app/${articleId}`,
+    },
+    {
+      property: 'og:image',
+      content: './logo.png',
+    },
   ];
 }
 
