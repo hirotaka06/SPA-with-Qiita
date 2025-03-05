@@ -59,7 +59,7 @@ export default function OptionForm() {
               className="text-sm font-medium flex items-center gap-1.5 whitespace-nowrap"
             >
               <User className="h-4 w-4" />
-              ユーザー
+              ユーザー名
             </Label>
             <div className="relative flex-grow">
               <Input
@@ -70,6 +70,7 @@ export default function OptionForm() {
                 }
                 className="pl-3 h-11 hover:bg-background/90 bg-background/50 ring ring-white/30 focus-visible:ring-[#4593F8]"
                 aria-label="ユーザー名入力フィールド"
+                placeholder="@の続きから入力..."
               />
             </div>
           </div>
@@ -113,6 +114,9 @@ export default function OptionForm() {
               aria-label="投稿日の選択"
             />
           </div>
+          <p className="text-sm text-white/60 font-medium ml-1">
+            ( ＊ 指定された日付以降の記事を表示します )
+          </p>
         </CardContent>
         <div className="flex space-x-2 mt-4 mx-1">
           <Button

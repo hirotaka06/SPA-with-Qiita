@@ -7,11 +7,11 @@ import { Settings, X } from 'lucide-react';
 import OptionForm from '~/components/OptionForm';
 
 export default function Header() {
-  const [isApiFormVisible, setApiFormVisible] = useState(false);
+  const [isSettingFormVisible, setSettingFormVisible] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
-  const toggleApiForm = () => {
-    setApiFormVisible(!isApiFormVisible);
+  const toggleSettingForm = () => {
+    setSettingFormVisible(!isSettingFormVisible);
   };
 
   // スクロールしたらヘッダーに影をつける
@@ -44,15 +44,15 @@ export default function Header() {
             {/* APIトークン入力フォーム表示ボタン */}
             <div className="relative group">
               <Button
-                onClick={toggleApiForm}
+                onClick={toggleSettingForm}
                 className={`w-14 h-12 rounded-md border border-white/30 bg-black text-white hover:border-white/60 hover:bg-black ${
-                  isApiFormVisible
+                  isSettingFormVisible
                     ? 'border-[#4593F8] text-[#4593F8] hover:border-blue-600 hover:bg-black hover:text-blue-600 shadow-blue-500/40 shadow-lg'
                     : ''
                 }`}
                 aria-label="設定フォームを表示"
               >
-                {isApiFormVisible ? (
+                {isSettingFormVisible ? (
                   <X />
                 ) : (
                   <>
@@ -67,8 +67,8 @@ export default function Header() {
           </div>
         </div>
       </header>
-      {/* APIフォームの表示 */}
-      {isApiFormVisible && (
+      {/* 設定フォームの表示 */}
+      {isSettingFormVisible && (
         <>
           <div className="fixed inset-0 bg-black opacity-80 z-40"></div>
           <div className="fixed top-28 w-80 right-3 sm:right-5 md:right-8 lg:right-12 z-50 bg-[#1a1a1a] rounded-md p-4 space-y-4">
