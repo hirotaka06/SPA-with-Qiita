@@ -45,7 +45,7 @@ export default function ApiForm() {
         <span className="flex-grow border-t border-white/60"></span>
       </Label>
       {currentToken && (
-        <div className="ml-1 mt-3 mb-2 flex font-medium items-center text-white/60 text-sm">
+        <div className="ml-1 mt-3 mb-2 flex font-bold items-center text-white/60 text-sm">
           <Key className="w-4 h-4 mr-2" />
           現在のAPIトークン: {currentToken.slice(0, 5)}*****
         </div>

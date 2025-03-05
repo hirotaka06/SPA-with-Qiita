@@ -56,7 +56,7 @@ export default function OptionForm() {
           <div className="flex items-center justify-between space-x-4">
             <Label
               htmlFor="username"
-              className="text-sm font-medium flex items-center gap-1.5 whitespace-nowrap"
+              className="text-sm font-bold flex items-center gap-1.5 whitespace-nowrap"
             >
               <User className="h-4 w-4" />
               ユーザー名
@@ -78,7 +78,7 @@ export default function OptionForm() {
           <div className="flex items-center justify-between space-x-4">
             <Label
               htmlFor="minStock"
-              className="text-sm font-medium flex items-center gap-1.5 whitespace-nowrap"
+              className="text-sm font-bold flex items-center gap-1.5 whitespace-nowrap"
             >
               <Package2 className="h-4 w-4" />
               最低ストック数
@@ -101,7 +101,7 @@ export default function OptionForm() {
           <div className="flex items-center justify-between space-x-4">
             <Label
               htmlFor="postDate"
-              className="text-sm font-medium flex items-center gap-1.5 whitespace-nowrap"
+              className="text-sm font-bold flex items-center gap-1.5 whitespace-nowrap"
             >
               <Calendar className="h-4 w-4" />
               投稿日
@@ -114,7 +114,7 @@ export default function OptionForm() {
               aria-label="投稿日の選択"
             />
           </div>
-          <p className="text-sm text-white/60 font-medium">
+          <p className="text-sm text-white/60 font-normal">
             (＊指定された日付以降の記事を表示します)
           </p>
         </CardContent>

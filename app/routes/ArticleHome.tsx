@@ -92,7 +92,7 @@ export default function ArticleHome() {
           <>
             <div className="flex justify-between items-end">
               <div className="relative flex flex-col my-4 ml-4 space-y-2">
-                <h1 className="text-2xl font-medium text-white">
+                <h1 className="text-2xl font-bold text-white">
                   {keyword ? '検索結果' : '新着記事'}
                 </h1>
                 <p className="text-white/60 text-sm">

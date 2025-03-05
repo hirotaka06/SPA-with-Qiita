@@ -27,7 +27,7 @@ export default function ArticleCard({
           </div>
 
           {/* Title */}
-          <h2 className="text-xl font-medium leading-tight text-white transition-transform duration-200 transform group-hover:scale-102 line-clamp-2 h-12">
+          <h2 className="text-xl font-bold leading-tight text-white transition-transform duration-200 transform group-hover:scale-102 line-clamp-2 h-12">
             {title}
           </h2>
 
