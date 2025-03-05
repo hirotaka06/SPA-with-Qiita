@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import ArticleHome from '~/routes/ArticleHome';
 import userEvent from '@testing-library/user-event';
-import ArticleLayout from '~/routes/ArticleLayout';
+import Header from '~/components/Header';
 
 // 各テストの前にローカルストレージをクリア
 beforeEach(() => {
@@ -42,8 +42,8 @@ test('初回レンダリング時にAPIトークンを入力してください�
 test('APIトークンが確認された後に記事が表示される', async () => {
   render(
     <div>
+      <Header />
       <ArticleHome />
-      <ArticleLayout />
     </div>,
     { wrapper: createWrapper() },
   );
@@ -64,11 +64,11 @@ test('APIトークンが確認された後に記事が表示される', async ()
   expect(articleElement2).toBeInTheDocument();
 });
 
-test('無効なAPIトークンが入力された場合、エラーメッセージが表示される', async () => {
+test('無効なAPIトークンが入力された場合、401のエラーメッセージが表示される', async () => {
   render(
     <div>
       <ArticleHome />
-      <ArticleLayout />
+      <Header />
     </div>,
     { wrapper: createWrapper() },
   );
