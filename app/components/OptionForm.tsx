@@ -114,8 +114,8 @@ export default function OptionForm() {
               aria-label="投稿日の選択"
             />
           </div>
-          <p className="text-sm text-white/60 font-medium ml-1">
-            ( ＊ 指定された日付以降の記事を表示します )
+          <p className="text-sm text-white/60 font-medium">
+            (＊指定された日付以降の記事を表示します)
           </p>
         </CardContent>
         <div className="flex space-x-2 mt-4 mx-1">
