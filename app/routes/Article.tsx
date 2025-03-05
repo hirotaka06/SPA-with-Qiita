@@ -58,7 +58,7 @@ export default function Article({ params }: Route.ComponentProps) {
     <div className="flex flex-col items-center justify-center">
       {!apiToken && (
         <div className="text-white mt-4 h-[calc(100vh-10rem)] w-full flex items-center justify-center">
-          APIトークンを入力してください
+          画面右上の設定フォームからQiitaのAPIトークンを入力してください
         </div>
       )}
       {error && apiToken && (
