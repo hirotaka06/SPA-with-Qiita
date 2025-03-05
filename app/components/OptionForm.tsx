@@ -69,6 +69,7 @@ export default function OptionForm() {
                   setFormValues({ ...formValues, user: e.target.value })
                 }
                 className="pl-3 h-11 hover:bg-background/90 bg-background/50 ring ring-white/30 focus-visible:ring-[#4593F8]"
+                aria-label="ユーザー名入力フィールド"
               />
             </div>
           </div>
@@ -91,6 +92,7 @@ export default function OptionForm() {
                   setFormValues({ ...formValues, minStocks: e.target.value })
                 }
                 className="pl-3 h-11 hover:bg-background/90 bg-background/50 ring ring-white/30 focus-visible:ring-[#4593F8]"
+                aria-label="最低ストック数入力フィールド"
               />
             </div>
           </div>
@@ -108,6 +110,7 @@ export default function OptionForm() {
               setDate={(date) =>
                 setFormValues({ ...formValues, fromDate: date })
               }
+              aria-label="投稿日の選択"
             />
           </div>
         </CardContent>
@@ -115,6 +118,7 @@ export default function OptionForm() {
           <Button
             type="submit"
             className="font-normal p-1 rounded-md flex-grow border border-[#22aa6d]/50 shadow-[#22aa6d]/50 shadow-lg bg-[#22aa6d] hover:bg-[#22aa6d]/80"
+            aria-label="保存ボタン"
           >
             <Save className="mr-1 h-5 w-5 text-white/70" />
             Save
@@ -123,6 +127,7 @@ export default function OptionForm() {
             type="button"
             onClick={handleReset}
             className="font-normal p-1 rounded-md flex-grow border border-[#8a49d0]/50 shadow-[#8a49d0]/50 shadow-lg bg-[#8a49d0] hover:bg-[#8a49d0]/80"
+            aria-label="リセットボタン"
           >
             <RefreshCw className="mr-1 h-5 w-5 text-white/70" />
             Reset

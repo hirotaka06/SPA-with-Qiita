@@ -2,6 +2,7 @@ import type { ArticleType } from '~/types/article';
 import { Heart } from 'lucide-react';
 import { Card } from '~/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
+import { format } from 'date-fns';
 
 export default function ArticleCard({
   created_at,
@@ -22,7 +23,7 @@ export default function ArticleCard({
         <div className="space-y-4">
           {/* Date */}
           <div className="text-sm text-green-200/80 group-hover:text-yellow-300">
-            {new Date(created_at).toLocaleDateString()}
+            {format(new Date(created_at), 'yyyy/MM/dd')}
           </div>
 
           {/* Title */}

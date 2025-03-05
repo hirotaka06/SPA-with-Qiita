@@ -48,7 +48,7 @@ test('useFetchArticleが正しく記事を取得する', async () => {
   expect(result.current.error).toBeNull();
 });
 
-test('idを変えると、そのidと一致する記事を取得する', async () => {
+test('articleIdを変えると、そのarticleIdと一致する記事を取得する', async () => {
   const { result } = renderHook(() => useFetchArticle('2', 'valid-token'), {
     wrapper: createWrapper(),
   });
@@ -71,7 +71,7 @@ test('idを変えると、そのidと一致する記事を取得する', async (
   expect(result.current.error).toBeNull();
 });
 
-test('idがない場合、クエリが無効化される', () => {
+test('articleIdがない場合、クエリが無効化される', () => {
   const { result } = renderHook(() => useFetchArticle('', 'valid-token'), {
     wrapper: createWrapper(),
   });
@@ -107,7 +107,7 @@ test('APIトークンが間違っている場合、401エラーが返される',
   );
 });
 
-test('存在しないidが指定された場合、404エラーが返される', async () => {
+test('存在しないarticleIdが指定された場合、404エラーが返される', async () => {
   const { result } = renderHook(() => useFetchArticle('999', 'valid-token'), {
     wrapper: createWrapper(),
   });

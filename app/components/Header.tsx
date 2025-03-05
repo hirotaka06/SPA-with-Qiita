@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import SearchForm from '~/components/SerchForm';
+import SearchForm from '~/components/SearchForm';
 import ApiForm from '~/components/ApiForm';
 import { useState, useEffect } from 'react';
 import { Button } from '~/components/ui/button';
@@ -29,6 +29,8 @@ export default function Header() {
   return (
     <div className="flex justify-center">
       <header
+        role="navigation"
+        aria-label="メインナビゲーション"
         className={`fixed top-4 w-[calc(100%-2rem)] z-50 bg-black rounded-xl ${hasScrolled ? 'shadow-[0_4px_18px_rgba(255,255,255,0.12)] border border-white/10' : ''}`}
       >
         <div className="flex justify-between py-4 space-x-2 mx-3 sm:mx-5 md:mx-8 lg:mx-12">
