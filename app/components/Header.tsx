@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import SearchForm from '~/components/SerchForm';
+import SearchForm from '~/components/SearchForm';
 import ApiForm from '~/components/ApiForm';
 import { useState, useEffect } from 'react';
 import { Button } from '~/components/ui/button';

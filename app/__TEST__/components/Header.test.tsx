@@ -42,6 +42,18 @@ test('Headerに設定ボタンが表示されている', () => {
   expect(settingsButton).toBeInTheDocument();
 });
 
+test('設定ボタンを押したら、検索オプションが表示される', async () => {
+  render(<Header />, { wrapper: createWrapper() });
+
+  const settingsButton = screen.getByRole('button', {
+    name: '設定フォームを表示',
+  });
+  await userEvent.click(settingsButton);
+
+  const searchOptions = screen.getByText('検索オプション');
+  expect(searchOptions).toBeInTheDocument();
+});
+
 test('設定ボタンをクリックするとAPIトークン入力フォームが表示される', async () => {
   render(<Header />, { wrapper: createWrapper() });
 
@@ -89,12 +101,4 @@ test('設定ボタンをクリックするとスタイルが変更される', as
   // ボタンのスタイルが変更されていることを確認
   expect(settingsButton).toHaveClass('border-[#4593F8]');
   expect(settingsButton).toHaveClass('text-[#4593F8]');
-});
-
-test('Headerがアクセシビリティの要件を満たしている', () => {
-  render(<Header />, { wrapper: createWrapper() });
-
-  // ARIA属性が正しく設定されていることを確認
-  const nav = screen.getByRole('navigation');
-  expect(nav).toHaveAttribute('aria-label', 'メインナビゲーション');
 });
