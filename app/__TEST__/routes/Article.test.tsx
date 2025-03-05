@@ -65,8 +65,9 @@ test('初回レンダリング時にAPIトークンを入力してください�
     },
   );
 
-  const articleElement1 =
-    await screen.findByText('APIトークンを入力してください');
+  const articleElement1 = await screen.findByText(
+    '画面右上の設定フォームからQiitaのAPIトークンを入力してください',
+  );
   expect(articleElement1).toBeInTheDocument();
 });
 
