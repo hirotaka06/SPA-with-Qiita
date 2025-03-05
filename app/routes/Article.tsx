@@ -35,7 +35,7 @@ export function meta({ params }: Route.MetaArgs) {
     },
     {
       property: 'og:image',
-      content: './Image.png',
+      content: './logo.png',
     },
   ];
 }
