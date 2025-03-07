@@ -1,15 +1,15 @@
-import type { Route } from './+types/ArticleHome';
-import type { ArticleType } from '~/types/article';
 import { useAtom, useAtomValue } from 'jotai';
-import { useFetchArticles } from '~/hooks/useFetchArticles';
-import { Link } from 'react-router';
-import { keywordAtom, apiTokenAtom, pageAtom } from '~/atoms/articleAtoms';
-import ArticleCard from '~/components/ArticleCard';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
-import BarLoader from 'react-spinners/BarLoader';
-import { Button } from '~/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
+import { Link } from 'react-router';
+import BarLoader from 'react-spinners/BarLoader';
+import { apiTokenAtom, keywordAtom, pageAtom } from '~/atoms/articleAtoms';
 import { optionsAtom } from '~/atoms/optionsAtom';
+import ArticleCard from '~/components/ArticleCard';
+import { Button } from '~/components/ui/button';
+import { useFetchArticles } from '~/hooks/useFetchArticles';
+import type { ArticleType } from '~/types/article';
+import type { Route } from './+types/ArticleHome';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -72,7 +72,7 @@ export default function ArticleHome() {
   return (
     <div className="flex flex-col items-center justify-center">
       {!apiToken && (
-        <div className="text-white mt-4 h-[calc(100vh-10rem)] w-full flex items-center justify-center">
+        <div className="text-white mt-4 h-[calc(100vh-10rem)] flex items-center justify-center mx-12">
           画面右上の設定フォームからQiitaのAPIトークンを入力してください
         </div>
       )}
