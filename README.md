@@ -55,7 +55,6 @@
 <!-- Treeコマンドを使ってディレクトリ構成を記載 -->
 
 ```
-❯ tree -a -I "node_modules|.git" -L 2
 .
 ├── .github
 │   └── workflows
@@ -64,14 +63,19 @@
 ├── .vscode
 ├── .yarn
 ├── app
+│   ├── __TEST__
+│   ├── atoms
+│   ├── hooks
+│   │   ├── useFetchArticle.ts
+│   │   └── useFetchArticles.ts
 │   ├── components
 │   │   └── ui
 │   ├── lib
 │   │   └── utils.ts
 │   ├── routes
-│   │   ├── __TEST__
 │   │   ├── Article.tsx
-│   │   └── ArticleHome.tsx
+│   │   ├── ArticleHome.tsx
+│   │   └── ArticleLayout.tsx
 │   ├── types
 │   ├── app.css
 │   ├── root.tsx
@@ -103,11 +107,13 @@
 - `.vscode`: VSCodeの設定ファイルを格納します。
 - `.yarn`: Yarn関連の設定ファイルを格納します。
 - `app`: アプリケーションのソースコードを格納します。
+  - `__TEST__`: テストファイルを格納します。
+  - `atoms`: 状態管理ライブラリJotaiで管理するatomの定義を格納します。
+  - `hooks`: カスタムフックを格納します。
   - `components`: 再利用可能なReactコンポーネントを格納します。
     - `ui`: shadcn/uiのコンポーネントを格納します。
   - `lib`: ライブラリやユーティリティ関数を格納します。
   - `routes`: 各ページのルートコンポーネントを格納します。
-    - `__TEST__`: テストファイルを格納します。
   - `types`: 型定義ファイルを格納します。
   - `app.css`: アプリケーションのスタイルシートです。
   - `root.tsx`: アプリケーションのルートコンポーネントです。
