@@ -2,11 +2,9 @@
 
 # 📷 画面のキャプチャ
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f39258eb-a191-4d13-b531-ebc981ee25e9" height="400" />
-  <img src="https://github.com/user-attachments/assets/846281d1-f37d-4ce1-8a93-0aa4a249488c" height="400" />
-</p>
-
+| ホーム | 検索欄　 |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/f39258eb-a191-4d13-b531-ebc981ee25e9" height="400"> | <img src="https://github.com/user-attachments/assets/846281d1-f37d-4ce1-8a93-0aa4a249488c" height="400"> |
 
 # 🚀 使用技術一覧
 
